@@ -18,6 +18,7 @@ public class Gameboard {
             this.deck = deck;
 
             private int doubleRound() {
+                int
 
 
             }
