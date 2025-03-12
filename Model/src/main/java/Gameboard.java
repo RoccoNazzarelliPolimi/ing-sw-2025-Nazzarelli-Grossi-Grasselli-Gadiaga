@@ -40,6 +40,7 @@ public class Gameboard {
 
     public int[] getRocketArray() {
         return rocketArray;
+        int i=1;
 
     }
 }
