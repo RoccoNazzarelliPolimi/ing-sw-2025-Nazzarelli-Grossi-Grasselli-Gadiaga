@@ -19,6 +19,7 @@ public class PlayerBoard {
         this.passengersPower = 0;
         this.numberTile = 0;
         this.stockInitialArray = new Tile[stockSize];
+
     }
 
     // Metodo per aggiungere una tessera
@@ -56,10 +57,11 @@ public class PlayerBoard {
         for (int i = 0; i < numRows; i++) {
             for (int j = 0; j < numColumns; j++) {
                 if (matrixBoard[i][j] != null) {
-                    count += matrixBoard[i][j].getOpenConnectors();
+                    //count += matrixBoard[i][j].getOpenConnectors();
                 }
             }
         }
         return count;
     }
+}
 
