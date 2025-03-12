@@ -31,8 +31,4 @@ public class Cell {
     public PlayerBoard getPlayerBoard() {
         return playerBoard;
     }
-
-    public void setPersonalBoard(PlayerBoard personalBoard) {
-        this.playerBoard = personalBoard;
-    }
 }
