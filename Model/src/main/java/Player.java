@@ -18,12 +18,12 @@ public class Player {
    }
 
    private Card getCard()
-   {}
+   { int a = 1;}
 
 
    private double totalFiringPower()
-   {}
+   { int b = 1;}
 
    private double totalSpeedPower ()
-   {}
+   { int c = 1;}
 }
