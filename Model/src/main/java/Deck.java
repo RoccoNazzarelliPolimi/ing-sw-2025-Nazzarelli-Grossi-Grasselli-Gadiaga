@@ -1,7 +1,7 @@
 import javax.smartcardio.Card;
 
 public class Deck {
-        private card[] cardsArray;
+
         private int startDeck1;
         private int startDeck2;
         private int startDeck3;
@@ -10,7 +10,7 @@ public class Deck {
             this.startDeck1 = startDeck1;
             this.startDeck2 = startDeck2;
             this.startDeck3 = startDeck3;
-            this.cardsArray = new Card[deckSize];
+
 
 
 
