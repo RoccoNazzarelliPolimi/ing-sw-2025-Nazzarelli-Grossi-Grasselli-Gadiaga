@@ -26,7 +26,7 @@ public  class Tile {
     //Avendo una tile, ritorna le coordinate della cella
     public int[] getCell() {
         if (cell != null) {
-            return cell.GetCoordinates(); // Restituisce l'array [row, column]
+            return cell.getCoordinates(); // Restituisce l'array [row, column]
         } else {
             return null; // Nessuna cella assegnata
         }
