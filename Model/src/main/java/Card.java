@@ -1,16 +1,8 @@
 public class Card {
-    private String suit;
-    private int value;
-    public Card(String suit, int value) {
-        this.suit = suit;
-        this.value = value;
+    private Deck deck;
+    private int credit;
+    private int steps;
 
-    }
-    public String getSuit() {
-        return suit;
-    }
-    public int getValue() {
-        return value;
-    }
-
+    public void addCreditToPlayer(Player player) {}
+    public void movePlayer(Player player) {}
 }
