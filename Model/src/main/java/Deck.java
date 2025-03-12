@@ -30,9 +30,4 @@ public class Deck {
 
                 return cardDrawn;
         }
-
-        public void removeCard()
-        {
-
-        }
 }
