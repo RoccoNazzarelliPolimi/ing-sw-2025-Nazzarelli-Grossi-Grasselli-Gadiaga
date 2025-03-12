@@ -24,12 +24,15 @@ public  class Tile {
 
     // Nuovi metodi
     //Avendo una tile, ritorna le coordinate della cella
-    public int[] getCell() {
+    public int[] getCoordinates() {
         if (cell != null) {
             return cell.getCoordinates(); // Restituisce l'array [row, column]
         } else {
             return null; // Nessuna cella assegnata
         }
+    }
+    public Cell getCell() {
+        return cell;
     }
 
     //Settare l'attributo cella alla tile
