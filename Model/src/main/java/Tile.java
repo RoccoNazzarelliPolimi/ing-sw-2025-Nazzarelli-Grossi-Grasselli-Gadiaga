@@ -5,20 +5,20 @@ public  class Tile {
     // Serve un costruttore?
 
     // Metodo per verificare il tipo di Tile(lo faccio poi in ogni sottoclasse)
-    // public abstract String CheckTypeTile();
+    // public abstract String checkTypeTile();
 
     // Metodo per riservare un Tile (metterla a lato)
-    public void ReserveTile() {
+    public void reserveTile() {
         // Implementazione?
     }
 
     // Metodo per ruotare un Tile
-    public void RotateTile() {
+    public void rotateTile() {
         // Implementazione
     }
 
     // Metodo per controllare la cella (se la cella è piena o si può mettere la tile)
-    public void CheckCell() {
+    public void checkCell() {
         // Implementazione
     }
 
