@@ -7,7 +7,7 @@ public class Pipe extends Tile {
     }
 
     // Metodo per ottenere il tipo di Tile
-    public String CheckTypeTile() {
+    public String checkTypeTile() {
         return "Pipe";
     }
 
