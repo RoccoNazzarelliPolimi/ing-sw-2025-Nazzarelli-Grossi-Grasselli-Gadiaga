@@ -26,4 +26,6 @@ public class Player {
 
    private double totalSpeedPower ()
    { int c = 1;}
+
+
 }
