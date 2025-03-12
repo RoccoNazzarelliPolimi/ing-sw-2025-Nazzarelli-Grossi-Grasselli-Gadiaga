@@ -15,12 +15,12 @@ public class Cell {
     }
 
     // Metodo per ottenere le coordinate come stringa
-    public int[] GetCoordinates() {
+    public int[] getCoordinates() {
         return new int[]{row, column};
     }
 
     // Ritorna Tile se c'è, se non c'è ritorna empty
-    public Optional<Tile> CheckTileOptional() {
+    public Optional<Tile> checkTileOptional() {
         return Optional.ofNullable(tile);
     }
 
