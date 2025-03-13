@@ -30,34 +30,38 @@ public class HousingUnit extends Tile {
         return (alien != null) ? alien.getColor() : null;
     }
 
-    // Controlla se c'è un Alien Add-On adiacente
     public AlienColor checkAlienAddOn() {
-        if (getCell() == null) return null; // Se la HousingUnit non è piazzata
+        // Controllo: se row o col sono null, la Tile non è ancora stata piazzata
+        if (this.row == -1 || this.col == -1) {
+            return null; // Tile non piazzata, quindi nessun controllo possibile
+        }
 
-        PlayerBoard board = getCell().getPlayerBoard();
-        if (board == null) return null;
-
-        int[] coordinates = getCell().getCoordinates();
-        int row = coordinates[0];
-        int col = coordinates[1];
+        PlayerBoard board = getPlayerBoard(); // Recuperiamo la PlayerBoard dalla Tile
+        if (board == null) {
+            return null; // Se la Tile non è associata a una PlayerBoard, non può controllare gli adiacenti
+        }
 
         int[][] directions = { {0, 1}, {0, -1}, {-1, 0}, {1, 0} }; // Destra, Sinistra, Sopra, Sotto
 
         for (int[] dir : directions) {
-            int newRow = row + dir[0];
-            int newCol = col + dir[1];
-            Cell adjacentCell = board.getCellAt(newRow, newCol);
+            int newRow = this.row + dir[0];
+            int newCol = this.col + dir[1];
 
-            if (adjacentCell != null) {
-                Optional<Tile> optionalTile = adjacentCell.checkTileOptional();
-                if (optionalTile.isPresent() && optionalTile.get() instanceof AlienAddOn) {
-                    AlienAddOn addOn = (AlienAddOn) optionalTile.get();
-                    return addOn.getColor();
+            if (newRow >= 0 && newRow < board.getNumRows() &&
+                    newCol >= 0 && newCol < board.getNumColumns() &&
+                    newRow != 13 && newCol != 13 &&
+                    board.getTileAt(newRow, newCol) != null) { // Controlliamo i limiti della board
+                Tile adjacentTile = board.getTileAt(newRow, newCol);
+
+                if (adjacentTile instanceof AlienAddOn) {
+                    return ((AlienAddOn) adjacentTile).getColor(); // Restituisce il colore dell'Add-On adiacente
                 }
             }
         }
-        return null;
+
+        return null; // Nessun Add-On trovato nelle vicinanze
     }
+
 
     // Imposta alienAddOn a true se esiste un Add-On
     public void setAlienAddOn() {
@@ -86,10 +90,6 @@ public class HousingUnit extends Tile {
     public void removeAliens() {
         this.numAlien = 0;
         this.alien = null;
-    }
-
-    public String checkTypeTile() {
-        return "Housing Unit";
     }
 
     public int[] getSides() {
