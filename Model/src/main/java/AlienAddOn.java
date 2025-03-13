@@ -2,10 +2,10 @@ import java.util.List;
 
 public class AlienAddOn extends Tile {
     private int[] sides;
-    private String color; //rosa (spari), marrone (motori)
+    private AlienColor color; //PURPLE O BROWN
 
     // Costruttore
-    public AlienAddOn(int[] sides, String color) {
+    public AlienAddOn(int[] sides, AlienColor color) {
         this.sides = sides;
         this.color = color;
     }
@@ -35,7 +35,7 @@ public class AlienAddOn extends Tile {
             Tile housingTile = housingCell.checkTileOptional().orElse(null);
             HousingUnit housingUnit = (HousingUnit) housingTile;
 
-            return (housingUnit.aliens && this.color.equalsIgnoreCase(housingUnit.getAlienColor()));
+            return (housingUnit.hasAlien() && this.color == housingUnit.getAlienColor());
         }
 
         return false;
@@ -88,7 +88,7 @@ public class AlienAddOn extends Tile {
         return sides;
     }
 
-    public String getColor() {
+    public AlienColor getColor() {
         return color;
     }
 }
