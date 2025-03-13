@@ -6,7 +6,7 @@ public class AlienAddOn extends Tile {
 
     // Costruttore
     public AlienAddOn(int[] sides, AlienColor color) {
-        this.sides = sides;
+        this.sides = new int[3];;
         this.color = color;
     }
 

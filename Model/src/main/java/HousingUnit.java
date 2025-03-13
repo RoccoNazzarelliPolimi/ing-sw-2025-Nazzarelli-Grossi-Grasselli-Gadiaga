@@ -9,7 +9,7 @@ public class HousingUnit extends Tile {
 
     // Costruttore
     public HousingUnit(int[] sides) {
-        this.sides = sides;
+        this.sides = new int[3];;
         this.numAstronauts = 0;
         this.alienAddOn = false;
         this.alien = null;
@@ -22,7 +22,7 @@ public class HousingUnit extends Tile {
     }
 
     public boolean hasAlien() {
-        return numAlien > 0 && alien != null;
+        return alien != null;
     }
 
     // Restituisce il colore dell'alieno se presente
@@ -68,9 +68,9 @@ public class HousingUnit extends Tile {
     public void addAstronauts() {
         this.numAstronauts = 2;
     }
-    // Rimuove 1 astronauta
-    public void removeAstronauts() {
-        this.numAstronauts = this.numAstronauts -1;
+    // Rimuove "num" astronauta
+    public void removeAstronauts(int num) {
+        this.numAstronauts = this.numAstronauts -num;
     }
 
     // Aggiunge un alieno se c'è un Add-On
