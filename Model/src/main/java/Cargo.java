@@ -12,6 +12,7 @@
         // Getter per il valore del cargo
         public int getValue() {
             return value;
+
         }
 
     }
