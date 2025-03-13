@@ -68,6 +68,7 @@ public class Rocket {
 
     public void setRocketId(int rocketId) {
         this.rocketId = rocketId;
+        int i=0;
     }
 }
 
