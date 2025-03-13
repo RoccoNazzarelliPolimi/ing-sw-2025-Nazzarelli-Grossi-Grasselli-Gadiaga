@@ -31,10 +31,11 @@ public class Drill extends Tile {
 
     //Method that returns true or false if the drill type needs a battery
     public boolean checkBatteriesNeeded() {
-        if (drillType>1){
+        if (drillType > 1){
 
             return true;
         }
+        return false;
 
     }
 
