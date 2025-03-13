@@ -1306,6 +1306,9 @@
         <mxCell id="PXtmkZrP94jPjwxH6KBo-12" value="mettiamo qua o sotto" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;" vertex="1" parent="1">
           <mxGeometry x="-1080" y="221" width="170" height="30" as="geometry" />
         </mxCell>
+        <mxCell id="PXtmkZrP94jPjwxH6KBo-15" value="chiedere se usare la batteria" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="-981" y="1461" width="230" height="30" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
