@@ -13,11 +13,6 @@ public class Shield extends Tile {
         return defence;
     }
 
-    // Restituisce il tipo della Tile
-    public String checkTypeTile() {
-        return "Shield";
-    }
-
     public int[] getSides() {
         return sides;
     }

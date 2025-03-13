@@ -25,11 +25,6 @@ public class Heater extends Tile {
         return heaterType;
     }
 
-    // Metodo per ottenere il tipo di Tile
-    public String checkTypeTile() {
-        return "Heater";
-    }
-
     public int[] getSides() {
         return sides;
     }
