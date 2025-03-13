@@ -1,18 +1,10 @@
 public class Drill extends Tile {
-
-    //array di 4 elementi che controlla per ogni lato il tipo di connettore
-    // es.[1 3 0 0] connettore da 1 a sx e da 3 sopra
     private int[] sides;
+    private int[] directions;//array di 4 elementi che ha la punta dove c'è 1
+    private int drillType; // 1 o 2
+    private double value; //0,5 o 1 o 2
 
-    //array di 4 elementi che ha la punta dove c'è 1
-    private int[] directions;
-    private int drillType;
-
-    //it's one or two
-    private double value;
-
-    //costruttore
-
+    // Costruttore
     public Drill(){
         this.sides = new int[3];
         this.directions = new int[3];

@@ -1,11 +1,9 @@
 public  class Tile {
-    private Cell cell; // La classe Cell ancora non esiste
-    private int destroyed; //toglierei questo attributo!!
+    private Cell cell;
 
-    // Serve un costruttore?
-
-    // Metodo per verificare il tipo di Tile(lo faccio poi in ogni sottoclasse)
-    // public abstract String checkTypeTile();
+    // Costruttore
+    public Tile() {
+    }
 
     // Metodo per riservare un Tile (metterla a lato)
     public void reserveTile() {
@@ -22,7 +20,6 @@ public  class Tile {
         // Implementazione
     }
 
-    // Nuovi metodi
     //Avendo una tile, ritorna le coordinate della cella
     public int[] getCoordinates() {
         if (cell != null) {
@@ -31,11 +28,11 @@ public  class Tile {
             return null; // Nessuna cella assegnata
         }
     }
+
     public Cell getCell() {
         return cell;
     }
 
-    //Settare l'attributo cella alla tile
     public void setCell(Cell cell) {
         this.cell = cell;
     }

@@ -1,13 +1,28 @@
 public class Heater extends Tile {
     private int[] sides;
     private int heaterType; //1 se singolo, 2 se doppio (e a batteria)
-    private double value; // 1 se singolo, 2 se doppio ( se si usa la batteria)
+    private int value; // 1 se singolo, 2 se doppio ( se si usa la batteria)
 
     // Costruttore
-    public Heater(int[] sides, int heaterType, double value) {
+    public Heater(int[] sides, int heaterType, int value) {
         this.sides = sides;
         this.heaterType = heaterType;
         this.value = value;
+    }
+
+    //sempre 1 se singolo, 2 solo se doppio e si usa la batteria
+    public double getValue() {
+        if (heaterType == 1) {
+            return value;
+        }
+        if (heaterType == 2) {
+            return value; //Bisogna chiedere se si vuole usare la batteria
+        }
+        return 0;
+    }
+
+    public int getHeaterType() {
+        return heaterType;
     }
 
     // Metodo per ottenere il tipo di Tile
@@ -15,17 +30,8 @@ public class Heater extends Tile {
         return "Heater";
     }
 
-    // Getter per i lati
     public int[] getSides() {
         return sides;
-    }
-
-    public int getHeaterType() {
-        return heaterType;
-    }
-
-    public double getValue() {
-        return value;
     }
 }
 

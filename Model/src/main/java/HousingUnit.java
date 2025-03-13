@@ -1,8 +1,8 @@
 import java.util.Optional;
 
 public class HousingUnit extends Tile {
-    private int numAstronauts;
     private int[] sides;
+    private int numAstronauts;
     private boolean alienAddOn;
     private Alien alien;        // L'alieno associato (se presente)
     private int numAlien;

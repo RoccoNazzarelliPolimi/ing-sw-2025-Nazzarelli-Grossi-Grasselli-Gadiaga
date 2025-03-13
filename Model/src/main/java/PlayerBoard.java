@@ -2,16 +2,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerBoard {
-    // Attributi privati
     private int numRows;
     private int numColumns;
     private Tile[][] matrixBoard;
     private List<Cell> allCells; // Lista di tutte le celle
     private Player player;
     private int firePowerPlayer;
+    private int heaterPowerPlayer;
     private int passengersPower;
-    private int numberTile;
-    private Tile[] stockInitialArray;
+    private int numberTile; //Potrebbe non servire questo attributo
+    private int numberDeletedTile;
+    private Tile[] stock;
 
     // Costruttore
     public PlayerBoard(int numRows, int numColumns, Player player, int stockSize) {
@@ -20,9 +21,11 @@ public class PlayerBoard {
         this.matrixBoard = new Tile[numRows][numColumns];
         this.player = player;
         this.firePowerPlayer = 0;
+        this.heaterPowerPlayer = 0;
         this.passengersPower = 0;
         this.numberTile = 0;
-        this.stockInitialArray = new Tile[stockSize];
+        this.numberDeletedTile = 0;
+        this.stock= new Tile[stockSize];
 
     }
 
@@ -40,7 +43,6 @@ public class PlayerBoard {
         return new ArrayList<>(allCells); // Restituisce una copia della lista
     }
 
-
     // Metodo per aggiungere una tessera
     public void addTile(Tile tile, int row, int col) {
         if (row >= 0 && row < numRows && col >= 0 && col < numColumns && matrixBoard[row][col] == null) {
@@ -49,11 +51,20 @@ public class PlayerBoard {
         }
     }
 
-    // Metodo per rimuovere una tessera
+    // Metodo per rimuovere una tessera (anche su Cell e Tile)
     public void removeTile(int row, int col) {
         if (row >= 0 && row < numRows && col >= 0 && col < numColumns && matrixBoard[row][col] != null) {
+            Tile tileToRemove = matrixBoard[row][col];
             matrixBoard[row][col] = null;
             numberTile--;
+
+            Cell cell = getCellAt(row, col); // Otteniamo la Cell corrispondente
+            if (cell != null) {
+                cell.removeTile(); // Chiama il metodo di Cell
+            }
+
+            numberTile--;
+            numberDeletedTile++; // Aumentiamo il numero di Tile rimosse
         }
     }
 
@@ -82,5 +93,12 @@ public class PlayerBoard {
         }
         return count;
     }
+
+    //Metodo che controlla se, finita la costruzione della nave, è giusta
+    public int checkBoard() {
+        //implementazione
+    }
+
+    //metodi check? (power, passengers, heater)
 }
 

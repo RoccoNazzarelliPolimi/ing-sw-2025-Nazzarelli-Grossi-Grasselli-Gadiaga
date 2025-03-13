@@ -4,7 +4,7 @@ public class Cell {
     private int row;
     private int column;
     private Tile tile;
-    private PlayerBoard playerBoard; //PlayerBoard ancora non definita
+    private PlayerBoard playerBoard;
 
     // Costruttore
     public Cell(int row, int column, PlayerBoard playerBoard) {
@@ -24,8 +24,19 @@ public class Cell {
         return Optional.ofNullable(tile);
     }
 
+    //Rimuovo una Tile
+    public void removeTile() {
+        if (this.tile != null) {
+            this.tile.setCell(null); // Rimuove la Cell dalla Tile
+            this.tile = null; // Rimuove la Tile dalla Cell
+        }
+    }
+
     public void setTile(Tile tile) {
         this.tile = tile;
+    }
+    public Tile getTile() {
+        return tile;
     }
 
     public PlayerBoard getPlayerBoard() {

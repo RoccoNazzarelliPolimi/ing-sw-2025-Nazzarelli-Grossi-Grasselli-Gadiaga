@@ -80,15 +80,11 @@ public class AlienAddOn extends Tile {
         return null; // Nessuna HousingUnit trovata
     }
 
-
-
-
+    public AlienColor getColor() {
+        return color;
+    }
 
     public int[] getSides() {
         return sides;
-    }
-
-    public AlienColor getColor() {
-        return color;
     }
 }
