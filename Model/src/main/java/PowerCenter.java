@@ -1,37 +1,30 @@
 public class PowerCenter {
-
     private int[] sides;
-    //it says how many batteries can be allocated into the tile
-    private int capacityBattery;
-    //how many batteries are available to use
-    private int availableBattery;
+    private int capacityBattery; // how many batteries can be allocated into the tile
+    private int availableBattery; //how many batteries are available to use
 
     //costruttore
     public PowerCenter(int[] sides, int capacityBattery, int availableBattery) {
-        this.sides = sides;
+        this.sides = new int[3];
         this.capacityBattery = capacityBattery;
-        this.availableBattery = availableBattery;
+        this.availableBattery = capacityBattery; //at the beginning the availability is equal to the capacity
     }
 
-    //method for adding batteries
-    public void addBattery(int amount){
-        if (amount > 0 && availableBattery + amount <= capacityBattery ){
-            availableBattery += amount;
+    //check the number of batteries available on the tile
+    public int checkBattery(){
+        return availableBattery;
+    }
+
+    //removes n batteries
+    public void removeBattery(int n){
+        if (n > 0 && availableBattery + n <= capacityBattery ){
+            availableBattery -= n;
+        } else {
+            System.out.println("Invalid number");
         }
     }
 
-    //method for removing batteries
-    public void removeBattery(int amount){
-        if (amount > 0 && availableBattery + amount <= capacityBattery ){
-            availableBattery -= amount;
-        }
+    public int[] getSides() {
+        return sides;
     }
-
-    public String CheckTypeTile() {
-        return "PowerCenter";
-    }
-
-
-
-
 }

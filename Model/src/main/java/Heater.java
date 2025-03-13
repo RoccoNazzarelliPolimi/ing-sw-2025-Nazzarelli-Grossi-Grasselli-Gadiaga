@@ -5,7 +5,7 @@ public class Heater extends Tile {
 
     // Costruttore
     public Heater(int[] sides, int heaterType, int value) {
-        this.sides = new int[3];;
+        this.sides = new int[3];
         this.heaterType = heaterType;
         this.value = value;
     }

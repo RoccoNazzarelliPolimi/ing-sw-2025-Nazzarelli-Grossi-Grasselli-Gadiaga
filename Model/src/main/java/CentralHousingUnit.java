@@ -3,11 +3,9 @@ public class CentralHousingUnit {
     private int[] sides;
 
     //costruttore
-
     public CentralHousingUnit(int numAstronauts, int[] sides) {
-        this.numAstronauts = numAstronauts;
-        this.sides = sides;
-
+        this.numAstronauts = 0;
+        this.sides = new int[3];
     }
 
     //metodo per contare gli astronauti a bordo
@@ -15,20 +13,9 @@ public class CentralHousingUnit {
         return numAstronauts;
     }
 
-    //metodo per controllare il tipo di connettore
-    public String CheckTypeTile() {
-        return "CentralHousingUnit";
-    }
-
     //metodo per aggiungere astronauti
-    public void addAstronauts(int n){
-        if (n > 0 && n <= numAstronauts) {
-            numAstronauts+= n;
-
-        } else {
-            System.out.println("Astronauts can't be empty or number illegal");
-        }
-
+    public void setAstronauts(int n){
+        numAstronauts+= 2;
     }
 
     //metodo per togliere astronauti
@@ -39,6 +26,7 @@ public class CentralHousingUnit {
             System.out.println("number illegal");
         }
     }
-
-
+    public int[] getSides() {
+        return sides;
+    }
 }

@@ -9,13 +9,21 @@ public class Drill extends Tile {
         this.sides = new int[3];
         this.directions = new int[3];
         this.drillType = drillType;
-        this.value = value;
-
+        this.value = 0;
     }
 
-    //returns the power of the Drill either 1 or 2
-    public int getPower(){
-        return drillType;
+    public void setValue(){
+        if (directions[1] == 1) { // if the drill points up
+            this.value = drillType;
+        } else if (directions[0] == 1 || directions[2] == 1) { // If the drill is orizontal
+            this.value = drillType / 2.0;
+        }
+    }
+
+    //returns the power of the Drill
+    public double getPower(){
+        setValue();
+        return value;
     }
 
     public int[] getDirections(){
@@ -24,27 +32,6 @@ public class Drill extends Tile {
     public int[] getSides(){
         return sides;
     }
-
-    public String checkTypeTile() {
-        return "Drill";
-    }
-
-    //Method that returns true or false if the drill type needs a battery
-    public boolean checkBatteriesNeeded() {
-        if (drillType > 1){
-
-            return true;
-        }
-        return false;
-
-    }
-
-
-
-
-
-
-
 
 
 

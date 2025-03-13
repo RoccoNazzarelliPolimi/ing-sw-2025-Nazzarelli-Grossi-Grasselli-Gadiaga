@@ -4,12 +4,12 @@ public class HousingUnit extends Tile {
     private int[] sides;
     private int numAstronauts;
     private boolean alienAddOn;
-    private Alien alien;        // L'alieno associato (se presente)
+    private Alien alien; // L'alieno associato (se presente)
     private int numAlien;
 
     // Costruttore
     public HousingUnit(int[] sides) {
-        this.sides = new int[3];;
+        this.sides = new int[3];
         this.numAstronauts = 0;
         this.alienAddOn = false;
         this.alien = null;
@@ -72,9 +72,14 @@ public class HousingUnit extends Tile {
     public void addAstronauts() {
         this.numAstronauts = 2;
     }
-    // Rimuove "num" astronauta
-    public void removeAstronauts(int num) {
-        this.numAstronauts = this.numAstronauts -num;
+
+    // Rimuovere n astronauts
+    public void removeAstronauts(int n){
+        if (n>0 && n<=numAstronauts) {
+            numAstronauts -= n;
+        } else {
+            System.out.println("number illegal");
+        }
     }
 
     // Aggiunge un alieno se c'è un Add-On
@@ -88,8 +93,12 @@ public class HousingUnit extends Tile {
     }
     // Rimuove l'alieno
     public void removeAliens() {
-        this.numAlien = 0;
-        this.alien = null;
+        if (this.alien != null) { // Controlla se c'è un alieno prima di rimuoverlo
+            this.numAlien = 0;
+            this.alien = null;
+        } else {
+            System.out.println("No alien to remove");
+        }
     }
 
     public int[] getSides() {

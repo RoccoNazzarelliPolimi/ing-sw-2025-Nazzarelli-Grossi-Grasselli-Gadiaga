@@ -1,22 +1,20 @@
+import java.util.ArrayList;
+import java.util.List;
 public class Storage {
-
     private int capacity;
-    //array di 4 elementi che controlla per ogni lato il tipo di connettore
-    // es.[1 3 0 0] connettore da 1 a sx e da 3 sopra
     private int[] sides;
     private int numCargo;
     private boolean canRed;
-    // Checks the value of each unit of cargo
-    private int[] cargoValues;
+    private List<Integer> cargoValues; //4 rosso, 3 giallo, 2 verde, 1 blu
 
     public Storage(int capacity, int[] sides) {
         this.capacity = capacity;
-        this.sides = sides;
+        this.sides =  new int[3];
+        this.numCargo = 0;
+        this.canRed = canRed;
+        this.cargoValues = new ArrayList<>(); //max three cargo
     }
 
-    public String checkTypeTile() {
-        return "Storage";
-    }
     //method that checks the capacity of the storage unit left
     public int checkCapacity() {
         return capacity - numCargo;
@@ -29,38 +27,49 @@ public class Storage {
 
     //boolean method to check if the cargo can contain red cargo
     public boolean checkRed() {
-        if
-        (canRed){
-            return true;
-
-        } else {
-            return false;
-        }
-
+        return canRed;
     }
-    //checks the sum of the values of each cargo
 
     //returns an int that sums the value of the cargos inside the storage unit
     public int checkTotalValue() {
         int total = 0;
-        for (int i=0; i< numCargo; i++) {
-            total += cargoValues[i]; //sommo i valori dei singoli cargo
+        for (int value : cargoValues) { // Itera direttamente sugli elementi della lista
+            total += value;
         }
-      return total;
+        return total;
     }
 
-    //method for adding a cargo da implementare bene
-
-    public void addCargo(int amount){
-        if (amount > 0 && numCargo + amount <= capacity) {
-            numCargo += amount;
-
+    //adding one cargo
+    public void addCargo(int type){
+        // Controllo per il cargo rosso
+        if (type == 4 && !canRed) {
+            System.out.println("Error: This storage can't contain a red cargo.");
+            return;
         }
 
+        // Controllo se c'è spazio disponibile
+        if (checkCapacity() > 0) {
+            cargoValues.add(type);
+            numCargo++;
+        } else {
+            System.out.println("Error: Not enough space to add cargo.");
+        }
+    }
+    //removes the cargo of that color
+    public void removeCargo(int type){
+        if (cargoValues.contains(type)) {
+            cargoValues.remove((Integer) type); // Rimuove il primo valore uguale a type
+            numCargo--;
+        } else {
+            System.out.println("Error: No " + type + " cargo found.");
+        }
     }
 
-    public boolean checkFull(){
-        return numCargo >= capacity;
+    public List<Integer> getCargoValues() {
+        return cargoValues;
     }
 
+    public int[] getSides() {
+        return sides;
+    }
 }
