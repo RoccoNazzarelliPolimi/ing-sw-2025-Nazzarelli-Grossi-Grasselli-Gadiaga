@@ -1,46 +1,56 @@
-public  class Tile {
-    private Cell cell; // La classe Cell ancora non esiste
-    private int destroyed; //toglierei questo attributo!!
+public class Tile {
+    private int row;
+    private int column;
+    private PlayerBoard playerBoard;
 
-    // Serve un costruttore?
+    public Tile(int row, int column, PlayerBoard playerBoard) {
+        this.row = row;
+        this.column = column;
+        this.playerBoard = playerBoard;
+    }
 
-    // Metodo per verificare il tipo di Tile(lo faccio poi in ogni sottoclasse)
-    // public abstract String checkTypeTile();
+    public int[] getCoordinates() {
+        return new int[]{row, column};
+    }
 
-    // Metodo per riservare un Tile (metterla a lato)
     public void reserveTile() {
-        // Implementazione?
+        // Implementazione per riservare la tile
     }
 
-    // Metodo per ruotare un Tile
     public void rotateTile() {
-        // Implementazione
+        // Implementazione per ruotare la tile
     }
 
-    // Metodo per controllare la cella (se la cella è piena o si può mettere la tile)
-    public void checkCell() {
-        // Implementazione
+    public boolean checkCell() {
+        // Implementazione per controllare la cella
+        return false;
     }
 
-    // Nuovi metodi
-    //Avendo una tile, ritorna le coordinate della cella
-    public int[] getCell() {
-        if (cell != null) {
-            return cell.GetCoordinates(); // Restituisce l'array [row, column]
-        } else {
-            return null; // Nessuna cella assegnata
-        }
+    public void removeTile() {
+        // Implementazione per rimuovere la tile
     }
 
-    //Settare l'attributo cella alla tile
-    public void setCell(Cell cell) {
-        this.cell = cell;
+    public PlayerBoard getPlayerBoard() {
+        return playerBoard;
     }
 
-    // Tolgo la tile dalla cella e la metto nello stock
-    public void removeTile(PlayerBoard board) {
-        this.cell = null; // La tile non ha più una cella assegnata
-        // Mettere qualcosa che aggiunge la Tile allo stock (come ReserveTile)
+    public void setPlayerBoard(PlayerBoard playerBoard) {
+        this.playerBoard = playerBoard;
     }
 
+    public int getRow() {
+        return row;
+    }
+
+    public void setRow(int row) {
+        this.row = row;
+    }
+
+    public int getCol() {
+        return column;
+    }
+
+    public void setCol(int column) {
+        this.column = column;
+    }
 }

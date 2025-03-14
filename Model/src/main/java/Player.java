@@ -17,15 +17,25 @@ public class Player {
 
    }
 
-   private Card getCard()
+   public Card getCard()
    { int a = 1;}
 
 
-   private double totalFiringPower()
+   public double totalFiringPower()
    { int b = 1;}
 
-   private double totalSpeedPower ()
+   public double totalSpeedPower ()
    { int c = 1;}
+
+   public double getScore()
+   {
+       return this.score;
+   }
+
+   public void setScore(double new_score)
+   {
+       this.score =  new_score;
+   }
 
 
 }

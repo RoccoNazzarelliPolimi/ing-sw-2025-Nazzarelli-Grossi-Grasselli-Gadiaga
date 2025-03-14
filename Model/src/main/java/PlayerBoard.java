@@ -8,9 +8,11 @@ public class PlayerBoard {
     private int passengersPower;
     private int numberTile;
     private Tile[] stockInitialArray;
+    private int numberDeletedTiles;
+
 
     // Costruttore
-    public PlayerBoard(int numRows, int numColumns, Player player, int stockSize) {
+    public PlayerBoard(int numRows, int numColumns, Player player, int stockSize, int numDelTile) {
         this.numRows = numRows;
         this.numColumns = numColumns;
         this.matrixBoard = new Tile[numRows][numColumns];
@@ -19,7 +21,7 @@ public class PlayerBoard {
         this.passengersPower = 0;
         this.numberTile = 0;
         this.stockInitialArray = new Tile[stockSize];
-
+        this.numberDeletedTiles = numDelTile;
     }
 
     // Metodo per aggiungere una tessera

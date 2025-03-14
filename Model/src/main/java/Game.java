@@ -1,3 +1,6 @@
+import java.util.Collections;
+
+
 public class Game {
     // Attributi della classe
     private int clessidraClock;
@@ -25,9 +28,8 @@ public class Game {
     }
 
     // Metodo per mescolare il mazzo di carte
-    public Deck shuffleDeck() {
+    public void shuffleDeck() {
         this.deckGame.shuffle();
-        return this.deckGame;
     }
 
     // Metodo per ottenere un giocatore (da implementare meglio a seconda della logica del gioco)
