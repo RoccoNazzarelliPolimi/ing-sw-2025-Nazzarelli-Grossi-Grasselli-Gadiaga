@@ -10,30 +10,26 @@ public class Player {
     public Player(String nickname, Double score, String color, PlayerBoard myBoard, Rocket myRocket) {
 
         this.nickname = nickname;
-        this.score = score;
+        this.score = 0;
         this.color = color;
         this.myBoard = myBoard;
         this.myRocket = myRocket;
 
     }
 
-    public double getScore()
-    {
-        return this.score;
+    public String getNickname(){
+        return nickname;
     }
-
-    public void setScore(double new_score)
-    {
-        this.score =  new_score;
+    public double getScore(){
+        return score;
     }
-
-    public String getColor()
-    {
-        return this.color;
+    public String getColor(){
+        return color;
     }
-
-    public void setColor(String color)
-    {
-        this.color = color;
+    public PlayerBoard getMyBoard(){
+        return myBoard;
+    }
+    public Rocket getMyRocket(){
+        return myRocket;
     }
 }
