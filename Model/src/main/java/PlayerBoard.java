@@ -63,5 +63,23 @@ public class PlayerBoard {
         }
         return count;
     }
+    public void checkBoard(){
+        //implementare
+    }
+    public double checkFirePower(){
+        double power = 0; //solo per non fare errore
+        //implementare
+        return power;
+    }
+    public double checkHeaterPower(){
+        double power = 0; //solo per non fare errore
+        //implementare
+        return power;
+    }
+    public double checkPassangersPower(){
+        double power = 0; //solo per non fare errore
+        //implementare
+        return power;
+    }
 }
 
