@@ -81,5 +81,8 @@ public class PlayerBoard {
         //implementare
         return power;
     }
+    public void modifyPassengerPower(int passengerLoss){
+        passengersPower = passengersPower - passengerLoss;
+    }
 }
 
