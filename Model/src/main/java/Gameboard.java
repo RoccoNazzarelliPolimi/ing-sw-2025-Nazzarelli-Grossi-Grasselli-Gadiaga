@@ -9,6 +9,8 @@ public class Gameboard{
 
     //Costruttore
 
+    int a = 1;
+
     public Gameboard(int hourglassClock, int hourglassRound, Deck deck) {
         this.pathArray = new String[40]; // 40 caselle sulla board
         this.rocketArray = new Rocket[4]; // Posizione dei 4 giocatori (inizialmente a 0)
