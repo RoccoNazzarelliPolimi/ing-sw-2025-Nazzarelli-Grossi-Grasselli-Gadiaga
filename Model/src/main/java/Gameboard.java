@@ -77,7 +77,7 @@ public class Gameboard {
                     System.out.println("Timer interrupted");
                     startHourglass(); //it automatically restarts
                 }
-                //manca la connessione con il controller per chiedere ai giocatori se girare la clessidra o no
+                //manca la connessione con il controller per chiedere ai giocatori se girare la clessidra o no!
 
 
             }
