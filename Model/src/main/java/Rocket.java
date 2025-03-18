@@ -1,7 +1,6 @@
 public class Rocket {
 
     private Player rocketPlayer;
-    private int order;
     private int numRounds;
     private int boardLocation;
 
@@ -10,7 +9,6 @@ public class Rocket {
         this.boardLocation = boardLocation;
         this.rocketPlayer = rocketPlayer;
         this.numRounds = numRounds;
-        this.order = order;
     }
 
     // Getter e Setter per rocketPlayer
@@ -20,15 +18,6 @@ public class Rocket {
 
     public void setRocketPlayer(Player rocketPlayer) {
         this.rocketPlayer = rocketPlayer;
-    }
-
-    // Getter e Setter per order
-    public int getOrder() {
-        return order;
-    }
-
-    public void setOrder(int order) {
-        this.order = order;
     }
 
     // Getter e Setter per numRounds
