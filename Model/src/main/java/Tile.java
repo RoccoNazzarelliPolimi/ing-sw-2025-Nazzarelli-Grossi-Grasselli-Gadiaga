@@ -1,41 +1,33 @@
-public  class Tile {
-    public int row;
-    public int col;
+public class Tile {
+    private int row;
+    private int column;
     private PlayerBoard playerBoard;
 
-    // Costruttore
-    public Tile() {
-        this.row = -1; // Indica che la Tile non è ancora piazzata
-        this.col = -1;
+    public Tile(int row, int column, PlayerBoard playerBoard) {
+        this.row = row;
+        this.column = column;
+        this.playerBoard = playerBoard;
     }
 
-    // Metodo per ottenere le coordinate come stringa
     public int[] getCoordinates() {
-        if (this.row == -1 || this.col == -1) {
-            return null; // La Tile non è piazzata, quindi restituisce null
-        }
-        return new int[]{row, col}; // Restituisce le coordinate se la Tile è piazzata
+        return new int[]{row, column};
     }
 
-    // Metodo per riservare un Tile (metterla a lato)
     public void reserveTile() {
-        // Implementazione?
+        // Implementazione per riservare la tile
     }
 
-    // Metodo per ruotare un Tile
     public void rotateTile() {
-        // Implementazione
+        // Implementazione per ruotare la tile
     }
 
-    // Metodo per controllare la cella (se la cella è piena o si può mettere la tile)
-    public void checkCell() {
-        // Implementazione
+    public boolean checkCell() {
+        // Implementazione per controllare la cella
+        return false;
     }
 
-    // Tolgo la tile dalla cella e la metto nello stock
-    public void removeTile(PlayerBoard board) {
-        this.playerBoard = null; // La tile non ha più una PB assegnata
-        // Mettere qualcosa che aggiunge la Tile allo stock (come ReserveTile)
+    public void removeTile() {
+        // Implementazione per rimuovere la tile
     }
 
     public PlayerBoard getPlayerBoard() {
@@ -45,17 +37,20 @@ public  class Tile {
     public void setPlayerBoard(PlayerBoard playerBoard) {
         this.playerBoard = playerBoard;
     }
+
     public int getRow() {
         return row;
     }
+
     public void setRow(int row) {
         this.row = row;
     }
 
     public int getCol() {
-        return col;
+        return column;
     }
-    public void setCol(int col) {
-        this.col = col;
+
+    public void setCol(int column) {
+        this.column = column;
     }
 }

@@ -1,5 +1,4 @@
-
-public class Gameboard {
+public class Gameboard{
     private int[] pathArray;
     private Rocket[] rocketArray;
 
@@ -19,42 +18,43 @@ public class Gameboard {
     //metodo per muovere un giocatore, da implementare
 
     public void movePlayer(Rocket rocket, int steps) {
-        int rocketId = rocket.getRocketId();
+        int rocketId = rocket.getRocketPlayer().;
 
 
 
+
+    }
+
+
+
+}
+
+
+
+// Metodo per verificare se un giocatore ha superato un altro
+public boolean doubleRound(int player) {
+    int pos = rocketArray[player];
+    for (int i = 0; i < rocketArray.length; i++) {
+        if (i != player && pos > rocketArray[i]) {
+            System.out.println("Giocatore " + player + " ha superato il giocatore " + i);
+            return true;
         }
-
-
-
     }
+    return false;
+}
+
+// Metodi getter per accedere ai dati
+public Deck getDeck() {
+    return deck;
+}
+
+public int[] getPathArray() {
+    return pathArray;
+}
+
+public int[] getRocketArray() {
+    return rocketArray;
 
 
-
-    // Metodo per verificare se un giocatore ha superato un altro
-    public boolean doubleRound(int player) {
-        int pos = rocketArray[player];
-        for (int i = 0; i < rocketArray.length; i++) {
-            if (i != player && pos > rocketArray[i]) {
-                System.out.println("Giocatore " + player + " ha superato il giocatore " + i);
-                return true;
-            }
-        }
-        return false;
-    }
-
-    // Metodi getter per accedere ai dati
-    public Deck getDeck() {
-        return deck;
-    }
-
-    public int[] getPathArray() {
-        return pathArray;
-    }
-
-    public int[] getRocketArray() {
-        return rocketArray;
-
-
-    }
+}
 }
