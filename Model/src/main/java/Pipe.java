@@ -3,12 +3,7 @@ public class Pipe extends Tile {
 
     // Costruttore
     public Pipe(int[] sides, int connectorType) {
-        this.sides = sides;
-    }
-
-    // Metodo per ottenere il tipo di Tile
-    public String checkTypeTile() {
-        return "Pipe";
+        this.sides = new int[3];;
     }
 
     // Getter per i lati della Pipe

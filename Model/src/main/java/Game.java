@@ -1,6 +1,4 @@
 import java.util.Collections;
-
-
 public class Game {
     // Attributi della classe
     private int clessidraClock;

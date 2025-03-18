@@ -2,12 +2,12 @@ public class Player {
 
    private String nickname;
    private double score;
-   private int color;
+   private String color;
    private PlayerBoard myBoard;
    private Rocket myRocket;
 
 
-   public Player(String nickname, Double score, int color, PlayerBoard myBoard, Rocket myRocket) {
+   public Player(String nickname, Double score, String color, PlayerBoard myBoard, Rocket myRocket) {
 
        this.nickname = nickname;
        this.score = score;
@@ -37,5 +37,13 @@ public class Player {
        this.score =  new_score;
    }
 
+   public String getColor()
+   {
+       return this.color;
+   }
 
+    public void setColor(String color)
+    {
+        this.color = color;
+    }
 }
