@@ -20,18 +20,20 @@ public class Player {
    public double getScore() {
        return score;
    }
-
-    public int getColor() {
+   public int getColor() {
         return color;
-    }
-    public String getNickname() {
+   }
+
+   public String getNickname() {
         return nickname;
-    }
-    public PlayerBoard getMyBoard() {
-        return myBoard;
-    }
-    public Rocket getMyRocket() {
+   }
+
+   public PlayerBoard getMyBoard() {
+       return myBoard;
+   }
+
+   public Rocket getMyRocket() {
        return myRocket;
-    }
+   }
 
 }
