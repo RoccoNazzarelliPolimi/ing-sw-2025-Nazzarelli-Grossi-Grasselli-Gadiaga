@@ -23,6 +23,9 @@ public class Player {
     public double getScore(){
         return score;
     }
+    public void addScore(int score){
+        this.score += score;
+    }
     public String getColor(){
         return color;
     }

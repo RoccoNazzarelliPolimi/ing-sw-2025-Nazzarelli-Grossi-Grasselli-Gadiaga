@@ -71,13 +71,13 @@ public class PlayerBoard {
         //implementare
         return power;
     }
-    public double checkHeaterPower(){
-        double power = 0; //solo per non fare errore
+    public int checkHeaterPower(){
+        int power = 0; //solo per non fare errore
         //implementare
         return power;
     }
-    public double checkPassangersPower(){
-        double power = 0; //solo per non fare errore
+    public int checkPassangersPower(){
+        int power = 0; //solo per non fare errore
         //implementare
         return power;
     }

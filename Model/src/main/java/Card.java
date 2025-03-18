@@ -1,7 +1,7 @@
 public class Card {
     private Deck deck;
-    private int credit;
-    private int steps;
+    public int credit;
+    public int steps;
 
     // costruttore completo con parametri
     public Card(Deck deck, int credit, int steps) {
@@ -35,17 +35,6 @@ public class Card {
         this.steps = steps;
     }
 
-    // metodo che aggiunge credito al giocatore
-    public void addCreditToPlayer(Player player) {
-        double currentCredit = player.getScore();
-        player.setScore(currentCredit + this.credit);
-    }
-
-    // metodo che muove il giocatore di un certo numero di passi
-    public void movePlayer(Player player) {
-        double currentPosition = player.getPosition();
-        player.setPosition(currentPosition + this.steps);
-    }
 
     // metodo toString (facoltativo ma utile)
     @Override
