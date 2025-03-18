@@ -1,90 +1,204 @@
-public class Gameboard {
-    private int[] pathArray;
+public class Gameboard{
+    private String[] pathArray;
     private Rocket[] rocketArray;
-
     private int hourglassClock;
     private int hourglassRound;
     private Deck deck;
-    private int hourglassIterator = 0;// n times the hourglass have been flipped
-    private boolean timerRunning = false; //check if the timer is active
+    private int start_path;
+    private int end_path;
 
-    // Costruttore
+    //Costruttore
+
+    int b;
+
     public Gameboard(int hourglassClock, int hourglassRound, Deck deck) {
-        this.pathArray = new int[40]; // 40 caselle sulla board
+        this.pathArray = new String[40]; // 40 caselle sulla board
         this.rocketArray = new Rocket[4]; // Posizione dei 4 giocatori (inizialmente a 0)
         this.hourglassClock = hourglassClock;
         this.hourglassRound = hourglassRound;
         this.deck = deck;
+        this.start_path = 0;
+        this.end_path = 39;
     }
 
-    //metodo per muovere un giocatore, da implementare
+    //Metodo per muovere un giocatore, da implementare
 
     public void movePlayer(Rocket rocket, int steps) {
-        int rocketId = rocket.getRocketPlayer().;
 
+        int stepsHelp = steps;
 
-    }
+        int index_rocket=0;
 
-    // Metodo per verificare se un giocatore ha superato un altro
-    public boolean doubleRound(int player) {
-        int pos = rocketArray[player];
-        for (int i = 0; i < rocketArray.length; i++) {
-            if (i != player && pos > rocketArray[i]) {
-                System.out.println("Giocatore " + player + " ha superato il giocatore " + i);
-                return true;
+        for(int i=0; i<rocketArray.length; i++)
+        {
+            if(rocketArray[i].equals(rocket))
+            {
+                index_rocket=i;
             }
         }
-        return false;
-    }
 
-    // Metodi getter per accedere ai dati
-    public Deck getDeck() {
-        return deck;
-    }
+        //Implementa il cambio ordine nel sorpasso
 
-    public int[] getPathArray() {
-        return pathArray;
-    }
+        //Fai ciclio anche per steps negativi
+        if (stepsHelp > 0) {
 
-    public int[] getRocketArray() {
-        return rocketArray;
-    }
+            while (stepsHelp > 0) {
 
-    //start the hourclock with thread, va collegata al controller
-    public void startHourglass() {
-        if (hourglassIterator >= 2) {
-            //interazione con controller per iniziare il gioco
-            //esempio gameStarted = true;
-            return;
+                if (rocket.getBoardLocation() + 1 != (this.end_path + 1)) {
+                    if (isFree(rocket.getBoardLocation() + 1)) {
 
-        }
+                        this.pathArray[rocket.getBoardLocation()] = null;
+                        rocket.setBoardLocation(rocket.getBoardLocation() + 1);
+                        this.pathArray[rocket.getBoardLocation()] = rocket.getRocketPlayer().getColor();
 
-        if (timerRunning == true) {
-            System.out.println("Timer is active");
-            return;
-        }
-        System.out.println("Hourglass has been flipped");
-        timerRunning = true;
-        hourglassIterator++;
+                    } else {
 
-        //start the thread for the timer,
-        new timerTask = new Runnable() {
-            public void run() {
+                        int start_jump_index = rocket.getBoardLocation();
+                        this.pathArray[start_jump_index] = null;
 
-                try {
-                    Thread.sleep(1000);//wait a second between each iteration
-                } catch (InterruptedException e) {
-                    System.out.println("Timer interrupted");
-                    startHourglass(); //it automatically restarts
+
+                        while (!isFree(rocket.getBoardLocation()))
+                        {
+                            if(rocket.getBoardLocation() + 1 == this.end_path + 1) {
+                                rocket.setBoardLocation(this.start_path);
+                                if (this.checkNumRounds(this.end_path)) {
+                                    this.deletePlayer();
+                                }
+                            } else {
+                                rocket.setBoardLocation(rocket.getBoardLocation() + 1);
+                                if (this.checkNumRounds(rocket.getBoardLocation()-1)) {
+                                    this.deletePlayer();
+                                }
+                            }
+                        }
+
+                        this.pathArray[rocket.getBoardLocation()] = rocket.getRocketPlayer().getColor();
+
+                    }
+
                 }
-                //manca la connessione con il controller per chiedere ai giocatori se girare la clessidra o no!
 
+                if (rocket.getBoardLocation() + 1 == this.end_path + 1) {
 
+                    rocket.setBoardLocation(this.start_path);
+                    this.pathArray[this.end_path] = null;
+
+                    while (!isFree(rocket.getBoardLocation()))
+                    {
+                        if(rocket.getBoardLocation() + 1 == this.end_path + 1) {
+                            rocket.setBoardLocation(this.start_path);
+                            if (this.checkNumRounds(this.end_path)) {
+                                this.deletePlayer();
+                            }
+                        } else {
+                            rocket.setBoardLocation(rocket.getBoardLocation() + 1);
+                            if (this.checkNumRounds(rocket.getBoardLocation()-1)) {
+                                this.deletePlayer();
+                            }
+                        }
+                    }
+
+                    this.pathArray[rocket.getBoardLocation()] = rocket.getRocketPlayer().getColor();
+
+                }
+                stepsHelp--;
             }
         }
+        else{
+
+            while (stepsHelp < 0) {
+
+                if (rocket.getBoardLocation() - 1 != (this.start_path - 1)) {
+                    if (isFree(rocket.getBoardLocation() - 1)) {
+
+                        this.pathArray[rocket.getBoardLocation()] = null;
+                        rocket.setBoardLocation(rocket.getBoardLocation() - 1);
+                        this.pathArray[rocket.getBoardLocation()] = rocket.getRocketPlayer().getColor();
+
+                    } else {
+
+                        int start_jump_index = rocket.getBoardLocation();
+                        this.pathArray[start_jump_index] = null;
+
+
+                        while (!isFree(rocket.getBoardLocation()-1))
+                        {
+                            if(rocket.getBoardLocation() - 1 == this.start_path - 1) {
+                                rocket.setBoardLocation(this.end_path);
+                                if (this.checkNumRounds(this.start_path)) {
+                                    this.deletePlayer();
+                                }
+                            } else {
+                                rocket.setBoardLocation(rocket.getBoardLocation() - 1);
+                                if (this.checkNumRounds(rocket.getBoardLocation()+1)) {
+                                    this.deletePlayer();
+                                }
+                            }
+                        }
+
+                        this.pathArray[rocket.getBoardLocation()] = rocket.getRocketPlayer().getColor();
+
+                    }
+
+                }
+
+                if (rocket.getBoardLocation() - 1 == this.start_path - 1) {
+
+                    rocket.setBoardLocation(this.start_path);
+                    this.pathArray[this.end_path] = null;
+
+                    while (!isFree(rocket.getBoardLocation()))
+                    {
+                        if(rocket.getBoardLocation() - 1 == this.start_path - 1) {
+                            rocket.setBoardLocation(this.start_path);
+                            if (this.checkNumRounds(this.end_path)) {
+                                this.deletePlayer();
+                            }
+                        } else {
+                            rocket.setBoardLocation(rocket.getBoardLocation() - 1);
+                            if (this.checkNumRounds(rocket.getBoardLocation() + 1)) {
+                                this.deletePlayer();
+                            }
+                        }
+                    }
+
+                    this.pathArray[rocket.getBoardLocation()] = rocket.getRocketPlayer().getColor();
+
+                }
+                stepsHelp++;
+            }
+
+        }
+
     }
+
+
+    public boolean isFree(int i) {
+     if(pathArray[i] != null) {
+        return false;
+     }
+     return true;
+     }
+
+     public boolean checkNumRounds(int index){
+
+     }
+
+   // Metodi getter per accedere ai dati
+     public Deck getDeck() {
+      return deck;
+     }
+
+     public String[] getPathArray() {
+       return pathArray;
+     }
+
+     public Rocket[] getRocketArray() {
+      return rocketArray;
+     }
+
+     public void deletePlayer()
+     {
+
+     }
 }
-
-
-
-
