@@ -10,22 +10,28 @@ public class Player {
    public Player(String nickname, Double score, int color, PlayerBoard myBoard, Rocket myRocket) {
 
        this.nickname = nickname;
-       this.score = score;
+       this.score = 0;
        this.color = color;
        this.myBoard = myBoard;
        this.myRocket = myRocket;
 
    }
 
-   private Card getCard()
-   { int a = 1;}
+   public double getScore() {
+       return score;
+   }
 
-
-   private double totalFiringPower()
-   { int b = 1;}
-
-   private double totalSpeedPower ()
-   { int c = 1;}
-
+    public int getColor() {
+        return color;
+    }
+    public String getNickname() {
+        return nickname;
+    }
+    public PlayerBoard getMyBoard() {
+        return myBoard;
+    }
+    public Rocket getMyRocket() {
+       return myRocket;
+    }
 
 }
