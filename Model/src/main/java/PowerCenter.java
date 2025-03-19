@@ -2,7 +2,7 @@ public class PowerCenter extends Tile{
     private int capacityBattery; // how many batteries can be allocated into the tile
     private int availableBattery; //how many batteries are available to use
 
-    //costruttore
+    //Costruttore
     public PowerCenter(int[] connectors, int row, int column, PlayerBoard playerBoard, int capacityBattery) {
         super(connectors, row, column, playerBoard);
         this.capacityBattery = capacityBattery;
@@ -22,6 +22,8 @@ public class PowerCenter extends Tile{
             System.out.println("Invalid number");
         }
     }
+
+    public int
 
     public int[] getSides() {
         return this.connectors;

@@ -122,6 +122,8 @@ public class PlayerBoard {
         }
     }
 
+
+    // Metodo che elimina una tile quando non è connessa bene
     public void deleteTile(Tile tile, int row, int col)
     {
 
@@ -135,14 +137,28 @@ public class PlayerBoard {
         }
         else if (tile instanceof HousingUnit)
         {
-            this.passengersPower = this.passengersPower - ((HousingUnit) tile).countPassengers();
+
+            if (((HousingUnit) tile).hasAlien())
+            {
+                this.passengersPower = this.passengersPower - 2;
+            }
+            else
+            {
+                this.passengersPower = this.passengersPower - ((HousingUnit) tile).countPassengers();
+            }
+
         }
         else if (tile instanceof Heater)
         {
             this.heaterPowerPlayer = this.heaterPowerPlayer - ((Heater) tile).getValue();
         }
+        else if (tile instanceof PowerCenter)
+        {
+            this.numberBatteries = this.numberBatteries - ((PowerCenter) tile).checkBattery();
+        }
 
     }
+
 
     public boolean matchesConnectorHor(Tile tileleft, Tile tileright) {
 
@@ -168,25 +184,62 @@ public class PlayerBoard {
 
     }
 
+    //Check the fire power of the playerBoard
     public double checkFirePower(){
-        double power = 0; //solo per non fare errore
-        //implementare
+
+        double power = 0;
+
+        for (int i = 0; i < this.numRows; i++)
+        {
+            for (int j = 0; j < this.numColumns; j ++)
+            {
+                  if( this.matrixBoard[i][j] instanceof Drill)
+                  {
+                      power = power + ((Drill) matrixBoard[i][j]).getPower();
+                  }
+            }
+        }
         return power;
     }
 
     public int checkHeaterPower(){
-        int power = 0; //solo per non fare errore
-        //implementare
+        int power = 0;
+
+        for (int i = 0; i < this.numRows; i++)
+        {
+            for (int j = 0; j < this.numColumns; j ++)
+            {
+                if( this.matrixBoard[i][j] instanceof Heater)
+                {
+                    power = power + ((Heater) matrixBoard[i][j]).getValue();
+                }
+            }
+        }
+
         return power;
     }
 
     public int checkPassangersPower(){
-        int power = 0; //solo per non fare errore
-        //implementare
+        int power = 0;
+
+        for (int i = 0; i < this.numRows; i++)
+        {
+            for (int j = 0; j < this.numColumns; j ++)
+            {
+                if(this.matrixBoard[i][j] instanceof HousingUnit)
+                {
+                    power = power + ((HousingUnit) matrixBoard[i][j]).countPassengers();
+                }
+                else if (this.matrixBoard[i][j] instanceof CentralHousingUnit)
+                {
+                    power = power + ((CentralHousingUnit) matrixBoard[i][j]).countPassengers();
+                }
+            }
+        }
         return power;
     }
     public void modifyPassengerPower(int passengerLoss){
-        passengersPower = passengersPower - passengerLoss;
+        this.passengersPower = this.passengersPower - passengerLoss;
     }
 
     public int checkCabinConnection() { //conta quante HousingUnit sono connesse direttamente tra loro
