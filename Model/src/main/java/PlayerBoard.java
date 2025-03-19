@@ -11,7 +11,12 @@ public class PlayerBoard {
     private int firePowerPlayer;
     private int passengersPower;
     private int numberTile;
+    private int numberBatteries;
     private Tile[] stockInitialArray;
+    private int heaterPowerPlayer;
+    private int numberAliens;
+
+
 
     // Costruttore
     public PlayerBoard(int numRows, int numColumns, Player player, int stockSize) {
@@ -22,6 +27,9 @@ public class PlayerBoard {
         this.firePowerPlayer = 0;
         this.passengersPower = 0;
         this.numberTile = 0;
+        this.numberBatteries = 0;
+        this.heaterPowerPlayer = 0;
+        this.numberAliens = 0;
         this.stockInitialArray = new Tile[stockSize];
     }
 
@@ -68,7 +76,7 @@ public class PlayerBoard {
         return count;
     }
 
-    public void checkBoard() {
+    public boolean checkBoardConnections() {
         for (int i = 0; i < numRows; i++) {
             for (int j = 0; j < numColumns; j++) {
                 if (matrixBoard[i][j] != null) {
@@ -76,29 +84,37 @@ public class PlayerBoard {
 
                     // Controlla connettori a sinistra
                     if (j > 0 && matrixBoard[i][j - 1] != null) {
-                        if (!currentTile.matchesConnector(matrixBoard[i][j - 1], "LEFT")) {
+                        if (!this.matchesConnectorHor(matrixBoard[i][j - 1], currentTile)) {
                             System.out.println("Errore di connessione a sinistra per la tessera in posizione (" + i + ", " + j + ")");
+                            deleteTile(currentTile, i, j);
+                            return this.checkBoardConnections();
                         }
                     }
 
                     // Controlla connettori a destra
                     if (j < numColumns - 1 && matrixBoard[i][j + 1] != null) {
-                        if (!currentTile.matchesConnector(matrixBoard[i][j + 1], "RIGHT")) {
+                        if (!this.matchesConnectorHor(currentTile, matrixBoard[i][j + 1])) {
                             System.out.println("Errore di connessione a destra per la tessera in posizione (" + i + ", " + j + ")");
+                            deleteTile(currentTile, i, j);
+                            return this.checkBoardConnections();
                         }
                     }
 
                     // Controlla connettori in alto
                     if (i > 0 && matrixBoard[i - 1][j] != null) {
-                        if (!currentTile.matchesConnector(matrixBoard[i - 1][j], "UP")) {
+                        if (!this.matchesConnectorVer(currentTile, matrixBoard[i - 1][j])) {
                             System.out.println("Errore di connessione in alto per la tessera in posizione (" + i + ", " + j + ")");
+                            deleteTile(currentTile, i, j);
+                            return this.checkBoardConnections();
                         }
                     }
 
                     // Controlla connettori in basso
                     if (i < numRows - 1 && matrixBoard[i + 1][j] != null) {
-                        if (!currentTile.matchesConnector(matrixBoard[i + 1][j], "DOWN")) {
+                        if (!this.matchesConnectorVer(matrixBoard[i + 1][j], currentTile)) {
                             System.out.println("Errore di connessione in basso per la tessera in posizione (" + i + ", " + j + ")");
+                            deleteTile(currentTile, i, j);
+                            return this.checkBoardConnections();
                         }
                     }
                 }
@@ -107,59 +123,125 @@ public class PlayerBoard {
     }
 
 
-    public Connector getRightConnector() {
-        return this.connectors[1]; // Supponendo che 1 sia la posizione del connettore destro
+    // Metodo che elimina una tile quando non è connessa bene
+    public void deleteTile(Tile tile, int row, int col)
+    {
+
+        this.matrixBoard[row][col] = null;
+
+        this.player.addScore(-1);
+
+        if (tile instanceof Drill)
+        {
+            this.firePowerPlayer = this.firePowerPlayer - 1;
+        }
+        else if (tile instanceof HousingUnit)
+        {
+
+            if (((HousingUnit) tile).hasAlien())
+            {
+                this.passengersPower = this.passengersPower - 2;
+            }
+            else
+            {
+                this.passengersPower = this.passengersPower - ((HousingUnit) tile).countPassengers();
+            }
+
+        }
+        else if (tile instanceof Heater)
+        {
+            this.heaterPowerPlayer = this.heaterPowerPlayer - ((Heater) tile).getValue();
+        }
+        else if (tile instanceof PowerCenter)
+        {
+            this.numberBatteries = this.numberBatteries - ((PowerCenter) tile).checkBattery();
+        }
+
     }
 
-    public Connector getLeftConnector() {
-        return this.connectors[3]; // Supponendo che 3 sia la posizione del connettore sinistro
-    }
 
-    public Connector getTopConnector() {
-        return this.connectors[0]; // Supponendo che 0 sia la posizione del connettore superiore
-    }
+    public boolean matchesConnectorHor(Tile tileleft, Tile tileright) {
 
-    public Connector getBottomConnector() {
-        return this.connectors[2]; // Supponendo che 2 sia la posizione del connettore inferiore
-    }
-
-    public boolean matchesConnector(Tile other, String direction) {
-        if (other == null) {
+        if (tileleft.getConnectors()[2] == tileright.getConnectors()[0])
+        {
+            return true;
+        }
+        else {
             return false;
         }
 
-        switch (direction) {
-            case "LEFT":
-                return this.getRightConnector() == other.getLeftConnector();
-            case "RIGHT":
-                return this.getLeftConnector() == other.getRightConnector();
-            case "UP":
-                return this.getBottomConnector() == other.getTopConnector();
-            case "DOWN":
-                return this.getTopConnector() == other.getBottomConnector();
-            default:
-                return false;
-        }
     }
 
+    public boolean matchesConnectorVer(Tile tiledown, Tile tileup) {
+
+        if (tiledown.getConnectors()[1] == tileup.getConnectors()[3])
+        {
+            return true;
+        }
+        else {
+            return false;
+        }
+
+    }
+
+    //Check the fire power of the playerBoard
     public double checkFirePower(){
-        double power = 0; //solo per non fare errore
-        //implementare
+
+        double power = 0;
+
+        for (int i = 0; i < this.numRows; i++)
+        {
+            for (int j = 0; j < this.numColumns; j ++)
+            {
+                  if( this.matrixBoard[i][j] instanceof Drill)
+                  {
+                      power = power + ((Drill) matrixBoard[i][j]).getPower();
+                  }
+            }
+        }
         return power;
     }
+
     public int checkHeaterPower(){
-        int power = 0; //solo per non fare errore
-        //implementare
+        int power = 0;
+
+        for (int i = 0; i < this.numRows; i++)
+        {
+            for (int j = 0; j < this.numColumns; j ++)
+            {
+                if( this.matrixBoard[i][j] instanceof Heater)
+                {
+                    power = power + ((Heater) matrixBoard[i][j]).getValue();
+                }
+            }
+        }
+
         return power;
     }
+
     public int checkPassangersPower(){
-        int power = 0; //solo per non fare errore
-        //implementare
+        int power = 0;
+
+        for (int i = 0; i < this.numRows; i++)
+        {
+            for (int j = 0; j < this.numColumns; j ++)
+            {
+                if(this.matrixBoard[i][j] instanceof HousingUnit)
+                {
+                    power = power + ((HousingUnit) matrixBoard[i][j]).countPassengers();
+                }
+                else if (this.matrixBoard[i][j] instanceof CentralHousingUnit)
+                {
+                    power = power + ((CentralHousingUnit) matrixBoard[i][j]).countPassengers();
+                }
+            }
+        }
         return power;
     }
     public void modifyPassengerPower(int passengerLoss){
-        passengersPower = passengersPower - passengerLoss;
+        this.passengersPower = this.passengersPower - passengerLoss;
     }
+
     public int checkCabinConnection() { //conta quante HousingUnit sono connesse direttamente tra loro
         int connection=0;
         //implementare

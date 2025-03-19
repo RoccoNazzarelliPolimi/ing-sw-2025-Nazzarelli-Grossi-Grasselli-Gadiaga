@@ -11,7 +11,7 @@ public class Heater extends Tile {
     }
 
     //sempre 1 se singolo, 2 solo se doppio e si usa la batteria
-    public double getValue() {
+    public int getValue() {
         if (heaterType == 1) {
             return value;
         }
@@ -28,5 +28,6 @@ public class Heater extends Tile {
     public int[] getSides() {
         return this.connectors;
     }
+
 }
 

@@ -23,7 +23,6 @@ public class Drill extends Tile {
 
     //returns the power of the Drill
     public double getPower(){
-        setValue();
         return value;
     }
 

@@ -47,33 +47,4 @@ public class MeteorSwarm extends Card {
         this.meteoriteMap = meteoriteMap;
     }
 
-    public class Gameboard {
-        private int[] pathArray;
-        private Rocket[] rocketArray;
-
-        private int hourglassClock;
-        private int hourglassRound;
-        private Deck deck;
-
-        // Costruttore
-        public Gameboard(int hourglassClock, int hourglassRound, Deck deck) {
-            this.pathArray = new int[40]; // 40 caselle sulla board
-            this.rocketArray = new Rocket[4]; // Posizione dei 4 giocatori (inizialmente a 0)
-            this.hourglassClock = hourglassClock;
-            this.hourglassRound = hourglassRound;
-            this.deck = deck;
-        }
-
-        //metodo per muovere un giocatore, da implementare
-
-        public void movePlayer(Rocket rocket, int steps) {
-            int rocketId = rocket.getRocketId();
-
-
-
-            }
-
-
-
-        }
 }
