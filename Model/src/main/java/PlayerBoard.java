@@ -13,6 +13,10 @@ public class PlayerBoard {
     private int numberTile;
     private int numberBatteries;
     private Tile[] stockInitialArray;
+    private int heaterPowerPlayer;
+    private int numberAliens;
+
+
 
     // Costruttore
     public PlayerBoard(int numRows, int numColumns, Player player, int stockSize) {
@@ -23,7 +27,9 @@ public class PlayerBoard {
         this.firePowerPlayer = 0;
         this.passengersPower = 0;
         this.numberTile = 0;
-        this.numberBatteries=0;
+        this.numberBatteries = 0;
+        this.heaterPowerPlayer = 0;
+        this.numberAliens = 0;
         this.stockInitialArray = new Tile[stockSize];
     }
 
@@ -118,20 +124,24 @@ public class PlayerBoard {
 
     public void deleteTile(Tile tile, int row, int col)
     {
+
         this.matrixBoard[row][col] = null;
+
         this.player.addScore(-1);
+
         if (tile instanceof Drill)
         {
-            this.firePowerPlayer = firePowerPlayer - 1;
+            this.firePowerPlayer = this.firePowerPlayer - 1;
         }
         else if (tile instanceof HousingUnit)
         {
-            this.passengersPower = passengersPower - ((HousingUnit) tile).countPassengers();
+            this.passengersPower = this.passengersPower - ((HousingUnit) tile).countPassengers();
         }
         else if (tile instanceof Heater)
         {
-
+            this.heaterPowerPlayer = this.heaterPowerPlayer - ((Heater) tile).getValue();
         }
+
     }
 
     public boolean matchesConnectorHor(Tile tileleft, Tile tileright) {
