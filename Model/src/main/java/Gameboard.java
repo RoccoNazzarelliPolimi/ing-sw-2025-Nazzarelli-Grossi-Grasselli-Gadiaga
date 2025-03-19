@@ -1,3 +1,7 @@
+import java.util.List;
+import java.util.ArrayList;
+
+
 public class Gameboard{
     private String[] pathArray;
     private Rocket[] rocketArray;
@@ -6,6 +10,7 @@ public class Gameboard{
     private Deck deck;
     private int start_path;
     private int end_path;
+
 
     //Costruttore
 
@@ -172,6 +177,42 @@ public class Gameboard{
 
     }
 
+
+    public void reverseArray(Rocket[] array) {
+        int left = 0, right = array.length - 1;
+
+        while (left < right) {
+
+            // Scambio
+            Rocket temp = array[left];
+            array[left] = array[right];
+            array[right] = temp;
+
+            left++;
+            right--;
+        }
+    }
+
+
+    public Rocket[] orderPlayer() {
+        List<Rocket> list = new ArrayList<>();
+
+        for (String s : this.pathArray) {
+            if (s != null) { // Evita il blocco vuoto
+                for (Rocket r : this.rocketArray) {
+                    if (s.equals(r.getRocketPlayer().getColor())) {
+                        list.add(r);
+                    }
+                }
+            }
+        }
+
+        Rocket[] arrayRockets = (Rocket[])list.toArray();
+
+        reverseArray(arrayRockets);
+
+        return arrayRockets; // Converte la lista in un array tipizzato
+    }
 
     public boolean isFree(int i) {
      if(pathArray[i] != null) {
