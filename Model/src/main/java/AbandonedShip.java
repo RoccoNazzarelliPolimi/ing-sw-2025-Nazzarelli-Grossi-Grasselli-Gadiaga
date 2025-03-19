@@ -6,13 +6,15 @@ public class AbandonedShip extends Card{
         this.passengerLoss = passengerLoss;
     }
 
-    public void AbandonedShip(Rocket rocketsArray[], Gameboard gameBoard) {
+    public void AbandonedShip( Gameboard gameBoard) {
+        Rocket rocketsArray[]=gameBoard.getRocketArray();
         for (Rocket rocket : rocketsArray) {
-            if(rocket.getPlayer().getMyBoard().checkPassangersPower()>passengerLoss){//maggiore perchè ti deve rimanere almeno un astronauta
+            if(rocket.getRocketPlayer().getMyBoard().checkPassangersPower()>passengerLoss){//maggiore perchè ti deve rimanere almeno un astronauta
                 if(ask()){//chiede al giocatore se vuole giocare la carta
-                    rocket.getPlayer().getMyBoard().modifyPassengerPower(passengerLoss);
-                    rocket.getPlayer().addScore(credit);
+                    rocket.getRocketPlayer().getMyBoard().modifyPassengerPower(passengerLoss);
+                    rocket.getRocketPlayer().addScore(credit);
                     gameBoard.movePlayer(rocket, steps);
+                    return;
                 }
             }
         }
