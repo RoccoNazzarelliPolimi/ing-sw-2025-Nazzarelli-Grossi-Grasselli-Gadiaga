@@ -41,22 +41,19 @@ public class Storage extends Tile {
     }
 
     //adding one cargo
-    public void addCargo(int type){
+    public boolean addCargo(int type){
         // Controllo per il cargo rosso
         if (type == 4 && !canRed) {
             System.out.println("Error: This storage can't contain a red cargo.");
-            return;
+            return false;
         }
-
-        // Controllo se c'è spazio disponibile
-        if (checkCapacity() > 0) {
+        else{
             cargoValues.add(type);
-            numCargo++;
-        } else {
-            System.out.println("Error: Not enough space to add cargo.");
+            return true;
         }
     }
     //removes the cargo of that color
+
     public void removeCargo(int type){
         if (cargoValues.contains(type)) {
             cargoValues.remove((Integer) type); // Rimuove il primo valore uguale a type

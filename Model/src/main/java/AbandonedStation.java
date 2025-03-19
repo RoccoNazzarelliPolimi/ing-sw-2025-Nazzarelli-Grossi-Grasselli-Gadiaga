@@ -1,6 +1,9 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class AbandonedStation extends Card {
 
-    private int[] rewardLoadArray;
+    private List<Integer> rewardLoad;
     private int requiredPassengers;
 
 
@@ -8,7 +11,7 @@ public class AbandonedStation extends Card {
     public AbandonedStation(Deck deck, int credit, int steps){
     super(deck, credit, steps);
         this.requiredPassengers = requiredPassengers;
-        this.rewardLoadArray = rewardLoadArray;
+        this.rewardLoad = rewardLoad;
     }
 
     public void AbandonedStation(Storage storage, Gameboard gameBoard) {

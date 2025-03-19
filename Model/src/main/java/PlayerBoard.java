@@ -1,3 +1,7 @@
+import java.util.List;
+import java.util.ArrayList;
+import java.util.*;
+
 public class PlayerBoard {
     // Attributi privati
     private int numRows;
@@ -89,35 +93,37 @@ public class PlayerBoard {
         //implementare
         return connection;
     }
-
-    public void checkStorage() {
-
-        int row=0;
-        int col=0;
-
-        for ( row= 0; row < numRows; row++) {
-            for (col =  0; col < numColumns; col++) {
-
-                if (matrixBoard[row][col] instanceof Storage) {
-
-
-
-
+    public void checkStorage(List<Integer> load){
+        int size=load.size();
+        int row;
+        int col;
+        int k;
+        while(load.size()>0){
+            while( load.size()==size ){
+                for(row=0; row<numRows;row++){
+                    for(col=0; col<numColumns; col++){
+                        Tile tile = matrixBoard[row][col];
+                        if(tile instanceof Storage){
+                            int currentCapacity=((Storage)tile).checkCapacity();
+                            if(currentCapacity>0){
+                                if(((Storage)tile).addCargo(load.get(0))){
+                                    load.remove(0);
+                                }
+                            }
+                            else{
+                                Collections.sort(((Storage)tile).getCargoValues());
+                                if(((Storage)tile).getCargoValues().get(0)<load.get(0)) {
+                                    ((Storage)tile).removeCargo(((Storage)tile).getCargoValues().get(0));
+                                    ((Storage)tile).addCargo(load.get(0));
+                                    load.remove(0);
+                                }
+                            }
+                        }
+                    }
+                }
             }
-
-
-
-
-            }
-
-
         }
 
-
     }
-
-
-
-
 }
 
