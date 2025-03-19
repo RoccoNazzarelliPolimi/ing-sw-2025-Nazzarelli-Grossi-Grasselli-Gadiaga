@@ -11,12 +11,11 @@ public class Tile {
         this.playerBoard = playerBoard;
     }
 
-    public Tile(int[] sides) {
+    public int[] getConnectors()
+    {
+        return this.connectors;
     }
 
-    public int[] getCoordinates() {
-        return new int[]{row, column};
-    }
 
     public void reserveTile() {
         // Implementazione per riservare la tile
