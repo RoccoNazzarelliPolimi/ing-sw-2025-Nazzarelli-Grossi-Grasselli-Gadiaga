@@ -23,8 +23,6 @@ public class PowerCenter extends Tile{
         }
     }
 
-    public int
-
     public int[] getSides() {
         return this.connectors;
     }

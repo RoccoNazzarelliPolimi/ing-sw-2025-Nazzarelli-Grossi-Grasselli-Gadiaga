@@ -21,7 +21,7 @@ public class HousingUnit extends Tile {
     }
 
     public boolean hasAlien() {
-        return alien != null;
+        return alienAddOn;
     }
 
     // Restituisce il colore dell'alieno se presente
@@ -77,7 +77,7 @@ public class HousingUnit extends Tile {
         if (n>0 && n<=numAstronauts) {
             numAstronauts -= n;
         } else {
-            System.out.println("number illegal");
+            System.out.println("Number not allowed!");
         }
     }
 
@@ -100,7 +100,7 @@ public class HousingUnit extends Tile {
         }
     }
 
-    public int[] getSides() {
-        return sides;
+    public int[] getConnectors() {
+        return connectors;
     }
 }

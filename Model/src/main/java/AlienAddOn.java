@@ -13,7 +13,7 @@ public class AlienAddOn extends Tile {
         return this.color;
     }
 
-    public int[] getSides() {
+    public int[] getConnectors() {
         return this.connectors;
     }
 }

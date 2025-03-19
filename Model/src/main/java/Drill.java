@@ -1,13 +1,11 @@
 public class Drill extends Tile {
-    private int[] sides;
     private int[] directions;//array di 4 elementi che ha la punta dove c'è 1
     private int drillType; // 1 o 2
     private double value; //0,5 o 1 o 2
 
     // Costruttore
-    public Drill(int[] connectors, int row, int column, PlayerBoard playerBoard) {
+    public Drill(int drillType, int[] directions, int[] connectors, int row, int column, PlayerBoard playerBoard) {
         super(connectors, row, column, playerBoard);
-        this.sides = new int[4];
         this.directions = new int[4];
         this.drillType = drillType;
         this.value = 0;
@@ -27,10 +25,10 @@ public class Drill extends Tile {
     }
 
     public int[] getDirections(){
-        return directions;
+        return this.directions;
     }
     public int[] getSides(){
-        return sides;
+        return this.connectors;
     }
 
 
