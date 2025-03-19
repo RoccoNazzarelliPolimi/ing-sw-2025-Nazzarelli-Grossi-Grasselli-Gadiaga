@@ -1,9 +1,10 @@
-public class CentralHousingUnit {
+public class CentralHousingUnit extends Tile{
     private int numAstronauts;
     private int[] sides;
 
     //costruttore
-    public CentralHousingUnit(int numAstronauts, int[] sides) {
+    public CentralHousingUnit(int row, int column, PlayerBoard playerBoard) {
+        super(row, column, playerBoard);
         this.numAstronauts = 0;
         this.sides = new int[3];
     }

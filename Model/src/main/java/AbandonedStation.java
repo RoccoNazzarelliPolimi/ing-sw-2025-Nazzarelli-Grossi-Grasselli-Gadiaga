@@ -9,8 +9,7 @@ public class AbandonedStation extends Card {
     super(deck, credit, steps);
         this.requiredPassengers = requiredPassengers;
         this.rewardLoadArray = rewardLoadArray;
-
-}
+    }
 
     public void AbandonedStation(Storage storage, Gameboard gameBoard) {
         Rocket rocketsArray[]=gameBoard.getRocketArray();

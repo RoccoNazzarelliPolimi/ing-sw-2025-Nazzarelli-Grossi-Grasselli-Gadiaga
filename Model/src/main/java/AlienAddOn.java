@@ -5,7 +5,8 @@ public class AlienAddOn extends Tile {
     private AlienColor color; //PURPLE O BROWN
 
     // Costruttore
-    public AlienAddOn(int[] sides, AlienColor color) {
+    public AlienAddOn(int row, int column, PlayerBoard playerBoard) {
+        super(row, column, playerBoard);
         this.sides = new int[3];;
         this.color = color;
     }

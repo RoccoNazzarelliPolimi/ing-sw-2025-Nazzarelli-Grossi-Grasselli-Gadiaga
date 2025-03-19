@@ -4,7 +4,8 @@ public class Heater extends Tile {
     private int value; // 1 se singolo, 2 se doppio ( se si usa la batteria)
 
     // Costruttore
-    public Heater(int[] sides, int heaterType, int value) {
+    public Heater(int row, int column, PlayerBoard playerBoard) {
+        super(row, column, playerBoard);
         this.sides = new int[3];
         this.heaterType = heaterType;
         this.value = value;

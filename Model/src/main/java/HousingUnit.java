@@ -8,7 +8,8 @@ public class HousingUnit extends Tile {
     private int numAlien;
 
     // Costruttore
-    public HousingUnit(int[] sides) {
+    public HousingUnit(int row, int column, PlayerBoard playerBoard) {
+        super(row, column, playerBoard);
         this.sides = new int[3];
         this.numAstronauts = 0;
         this.alienAddOn = false;

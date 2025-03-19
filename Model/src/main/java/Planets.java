@@ -1,7 +1,16 @@
-public class Planets extends Card{
-    private int[] planetArray;
-    private int[] loadArray;
+import java.util.List;
+import java.util.Map;
 
-    public int getLoad() { return 0; }
-    public void checkAvailabilityLoad() {}
+public class Planets extends Card{
+    private Map<Integer, List<String>> planetCargo; // Mappa: numero del pianeta → lista dei cargo
+
+    //costruttore
+    public Planets(Deck deck, int credit, int steps){
+        super(deck, credit, steps);
+        Map<Integer, List<String>> planetCargo;
+    }
+
+    public void planets (Gameboard gameBoard){
+        //implementare
+    }
 }

@@ -1,13 +1,14 @@
 import java.util.ArrayList;
 import java.util.List;
-public class Storage {
+public class Storage extends Tile {
     private int capacity;
     private int[] sides;
     private int numCargo;
     private boolean canRed;
     private List<Integer> cargoValues; //4 rosso, 3 giallo, 2 verde, 1 blu
 
-    public Storage(int capacity, int[] sides) {
+    public Storage(int row, int column, PlayerBoard playerBoard) {
+        super(row, column, playerBoard);
         this.capacity = capacity;
         this.sides =  new int[3];
         this.numCargo = 0;

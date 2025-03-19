@@ -5,7 +5,8 @@ public class Drill extends Tile {
     private double value; //0,5 o 1 o 2
 
     // Costruttore
-    public Drill(){
+    public Drill(int row, int column, PlayerBoard playerBoard) {
+        super(row, column, playerBoard);
         this.sides = new int[3];
         this.directions = new int[3];
         this.drillType = drillType;
