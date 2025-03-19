@@ -84,10 +84,8 @@ public class Gameboard{
                     }
 
                 }
-<<<<<<< HEAD
+
                 //manca la connessione con il controller per chiedere ai giocatori se girare la clessidra o no!
-=======
->>>>>>> origin/main
 
                 if (rocket.getBoardLocation() + 1 == this.end_path + 1) {
 
