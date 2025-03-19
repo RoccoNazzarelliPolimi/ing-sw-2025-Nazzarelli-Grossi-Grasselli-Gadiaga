@@ -89,5 +89,35 @@ public class PlayerBoard {
         //implementare
         return connection;
     }
+
+    public void checkStorage() {
+
+        int row=0;
+        int col=0;
+
+        for ( row= 0; row < numRows; row++) {
+            for (col =  0; col < numColumns; col++) {
+
+                if (matrixBoard[row][col] instanceof Storage) {
+
+
+
+
+            }
+
+
+
+
+            }
+
+
+        }
+
+
+    }
+
+
+
+
 }
 
