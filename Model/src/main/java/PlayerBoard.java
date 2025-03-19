@@ -303,4 +303,7 @@ public class PlayerBoard {
     public void shoot (Map<Integer, Integer> shootsMap){
         //implementare
     }
+    public void meteorShoot (int size, int direction, int dice){
+        //implementare
+    }
 }
