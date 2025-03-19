@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36" version="26.1.1">
   <diagram name="Page-1" id="2YBvvXClWsGukQMizWep">
-    <mxGraphModel dx="1960" dy="943" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1307" dy="629" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -76,9 +76,9 @@
             <mxPoint x="528.51" y="280" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="kGa-enVVRtIYIfq65YVT-155" value="PickTileResponse(positionsOfTiles: List&amp;lt;Position&amp;gt;, column: int, row: int)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;exitX=0.4;exitY=0.324;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="kGa-enVVRtIYIfq65YVT-130" target="kGa-enVVRtIYIfq65YVT-129">
+        <mxCell id="kGa-enVVRtIYIfq65YVT-155" value="PickTileResponse(positionsOfTiles: List&amp;lt;Position&amp;gt;, column: int, row: int)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;" edge="1" parent="1" target="kGa-enVVRtIYIfq65YVT-129">
           <mxGeometry x="0.002" relative="1" as="geometry">
-            <mxPoint x="532.5" y="320" as="sourcePoint" />
+            <mxPoint x="600" y="320" as="sourcePoint" />
             <Array as="points">
               <mxPoint x="372.5" y="320" />
               <mxPoint x="263" y="375" />
