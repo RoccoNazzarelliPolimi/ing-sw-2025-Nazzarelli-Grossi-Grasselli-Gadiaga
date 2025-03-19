@@ -5,10 +5,10 @@ public class Drill extends Tile {
     private double value; //0,5 o 1 o 2
 
     // Costruttore
-    public Drill(int row, int column, PlayerBoard playerBoard) {
-        super(row, column, playerBoard);
-        this.sides = new int[3];
-        this.directions = new int[3];
+    public Drill(int[] connectors, int row, int column, PlayerBoard playerBoard) {
+        super(connectors, row, column, playerBoard);
+        this.sides = new int[4];
+        this.directions = new int[4];
         this.drillType = drillType;
         this.value = 0;
     }

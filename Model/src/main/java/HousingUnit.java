@@ -1,16 +1,14 @@
 import java.util.Optional;
 
 public class HousingUnit extends Tile {
-    private int[] sides;
     private int numAstronauts;
     private boolean alienAddOn;
     private Alien alien; // L'alieno associato (se presente)
     private int numAlien;
 
     // Costruttore
-    public HousingUnit(int row, int column, PlayerBoard playerBoard) {
-        super(row, column, playerBoard);
-        this.sides = new int[3];
+    public HousingUnit(int[] connectors, int row, int column, PlayerBoard playerBoard) {
+        super(connectors,row, column, playerBoard);
         this.numAstronauts = 0;
         this.alienAddOn = false;
         this.alien = null;
@@ -33,7 +31,7 @@ public class HousingUnit extends Tile {
 
     public AlienColor checkAlienAddOn() {
         // Controllo: se row o col sono null, la Tile non è ancora stata piazzata
-        if (this.row == -1 || this.col == -1) {
+        if (this.row == -1 || this.column == -1) {
             return null; // Tile non piazzata, quindi nessun controllo possibile
         }
 
@@ -46,7 +44,7 @@ public class HousingUnit extends Tile {
 
         for (int[] dir : directions) {
             int newRow = this.row + dir[0];
-            int newCol = this.col + dir[1];
+            int newCol = this.column + dir[1];
 
             if (newRow >= 0 && newRow < board.getNumRows() &&
                     newCol >= 0 && newCol < board.getNumColumns() &&

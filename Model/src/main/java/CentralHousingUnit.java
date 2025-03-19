@@ -1,12 +1,10 @@
 public class CentralHousingUnit extends Tile{
     private int numAstronauts;
-    private int[] sides;
 
     //costruttore
-    public CentralHousingUnit(int row, int column, PlayerBoard playerBoard) {
-        super(row, column, playerBoard);
+    public CentralHousingUnit(int[] connectors, int row, int column, PlayerBoard playerBoard) {
+        super(connectors, row, column, playerBoard);
         this.numAstronauts = 0;
-        this.sides = new int[3];
     }
 
     //metodo per contare gli astronauti a bordo
@@ -28,6 +26,6 @@ public class CentralHousingUnit extends Tile{
         }
     }
     public int[] getSides() {
-        return sides;
+        return this.connectors;
     }
 }
