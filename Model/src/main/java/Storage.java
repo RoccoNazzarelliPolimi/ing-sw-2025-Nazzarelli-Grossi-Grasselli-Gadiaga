@@ -2,15 +2,13 @@ import java.util.ArrayList;
 import java.util.List;
 public class Storage extends Tile {
     private int capacity;
-    private int[] sides;
     private int numCargo;
     private boolean canRed;
     private List<Integer> cargoValues; //4 rosso, 3 giallo, 2 verde, 1 blu
 
-    public Storage(int row, int column, PlayerBoard playerBoard) {
-        super(row, column, playerBoard);
+    public Storage(int[] connectors, int row, int column, PlayerBoard playerBoard, int capacity, boolean canRed) {
+        super(connectors, row, column, playerBoard);
         this.capacity = capacity;
-        this.sides =  new int[3];
         this.numCargo = 0;
         this.canRed = canRed;
         this.cargoValues = new ArrayList<>(); //max three cargo
@@ -71,6 +69,6 @@ public class Storage extends Tile {
     }
 
     public int[] getSides() {
-        return sides;
+        return this.connectors;
     }
 }

@@ -1,12 +1,17 @@
 public class Tile {
-    private int row;
-    private int column;
+    public int row;
+    public int column;
     private PlayerBoard playerBoard;
+    public int[] connectors;
 
-    public Tile(int row, int column, PlayerBoard playerBoard) {
+    public Tile(int[] connectors, int row, int column, PlayerBoard playerBoard) {
+        this.connectors = connectors;
         this.row = row;
         this.column = column;
         this.playerBoard = playerBoard;
+    }
+
+    public Tile(int[] sides) {
     }
 
     public int[] getCoordinates() {

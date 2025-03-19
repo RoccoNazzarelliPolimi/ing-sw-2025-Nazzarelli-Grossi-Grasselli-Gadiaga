@@ -19,8 +19,8 @@ public class PlayerBoard {
         this.passengersPower = 0;
         this.numberTile = 0;
         this.stockInitialArray = new Tile[stockSize];
-
     }
+
 
     // Metodo per aggiungere una tessera
     public void addTile(Tile tile, int row, int col) {
@@ -63,9 +63,81 @@ public class PlayerBoard {
         }
         return count;
     }
-    public void checkBoard(){
-        //implementare
+
+    public void checkBoard() {
+        for (int i = 0; i < numRows; i++) {
+            for (int j = 0; j < numColumns; j++) {
+                if (matrixBoard[i][j] != null) {
+                    Tile currentTile = matrixBoard[i][j];
+
+                    // Controlla connettori a sinistra
+                    if (j > 0 && matrixBoard[i][j - 1] != null) {
+                        if (!currentTile.matchesConnector(matrixBoard[i][j - 1], "LEFT")) {
+                            System.out.println("Errore di connessione a sinistra per la tessera in posizione (" + i + ", " + j + ")");
+                        }
+                    }
+
+                    // Controlla connettori a destra
+                    if (j < numColumns - 1 && matrixBoard[i][j + 1] != null) {
+                        if (!currentTile.matchesConnector(matrixBoard[i][j + 1], "RIGHT")) {
+                            System.out.println("Errore di connessione a destra per la tessera in posizione (" + i + ", " + j + ")");
+                        }
+                    }
+
+                    // Controlla connettori in alto
+                    if (i > 0 && matrixBoard[i - 1][j] != null) {
+                        if (!currentTile.matchesConnector(matrixBoard[i - 1][j], "UP")) {
+                            System.out.println("Errore di connessione in alto per la tessera in posizione (" + i + ", " + j + ")");
+                        }
+                    }
+
+                    // Controlla connettori in basso
+                    if (i < numRows - 1 && matrixBoard[i + 1][j] != null) {
+                        if (!currentTile.matchesConnector(matrixBoard[i + 1][j], "DOWN")) {
+                            System.out.println("Errore di connessione in basso per la tessera in posizione (" + i + ", " + j + ")");
+                        }
+                    }
+                }
+            }
+        }
     }
+
+
+    public Connector getRightConnector() {
+        return this.connectors[1]; // Supponendo che 1 sia la posizione del connettore destro
+    }
+
+    public Connector getLeftConnector() {
+        return this.connectors[3]; // Supponendo che 3 sia la posizione del connettore sinistro
+    }
+
+    public Connector getTopConnector() {
+        return this.connectors[0]; // Supponendo che 0 sia la posizione del connettore superiore
+    }
+
+    public Connector getBottomConnector() {
+        return this.connectors[2]; // Supponendo che 2 sia la posizione del connettore inferiore
+    }
+
+    public boolean matchesConnector(Tile other, String direction) {
+        if (other == null) {
+            return false;
+        }
+
+        switch (direction) {
+            case "LEFT":
+                return this.getRightConnector() == other.getLeftConnector();
+            case "RIGHT":
+                return this.getLeftConnector() == other.getRightConnector();
+            case "UP":
+                return this.getBottomConnector() == other.getTopConnector();
+            case "DOWN":
+                return this.getTopConnector() == other.getBottomConnector();
+            default:
+                return false;
+        }
+    }
+
     public double checkFirePower(){
         double power = 0; //solo per non fare errore
         //implementare
@@ -120,4 +192,3 @@ public class PlayerBoard {
 
 
 }
-

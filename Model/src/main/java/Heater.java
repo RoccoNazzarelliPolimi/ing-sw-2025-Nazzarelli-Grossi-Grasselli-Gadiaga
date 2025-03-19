@@ -4,9 +4,8 @@ public class Heater extends Tile {
     private int value; // 1 se singolo, 2 se doppio ( se si usa la batteria)
 
     // Costruttore
-    public Heater(int row, int column, PlayerBoard playerBoard) {
-        super(row, column, playerBoard);
-        this.sides = new int[3];
+    public Heater(int[] connectors, int row, int column, PlayerBoard playerBoard, int heaterType, int value) {
+        super(connectors, row, column, playerBoard);
         this.heaterType = heaterType;
         this.value = value;
     }
@@ -23,11 +22,11 @@ public class Heater extends Tile {
     }
 
     public int getHeaterType() {
-        return heaterType;
+        return this.heaterType;
     }
 
     public int[] getSides() {
-        return sides;
+        return this.connectors;
     }
 }
 
