@@ -10,6 +10,7 @@ public class Card {
         this.steps = steps;
     }
 
+
     // metodi getter e setter
     public Deck getDeck() {
         return deck;

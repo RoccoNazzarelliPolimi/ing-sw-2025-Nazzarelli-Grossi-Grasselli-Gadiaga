@@ -1,9 +1,6 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class AbandonedStation extends Card {
 
-    private List<Integer> rewardLoad;
+    private int[] rewardLoadArray;
     private int requiredPassengers;
 
 
@@ -11,7 +8,7 @@ public class AbandonedStation extends Card {
     public AbandonedStation(Deck deck, int credit, int steps){
     super(deck, credit, steps);
         this.requiredPassengers = requiredPassengers;
-        this.rewardLoad = rewardLoad;
+        this.rewardLoadArray = rewardLoadArray;
     }
 
     public void AbandonedStation(Storage storage, Gameboard gameBoard) {
@@ -20,7 +17,7 @@ public class AbandonedStation extends Card {
             if (rocket.getRocketPlayer().getMyBoard().checkPassangersPower() > requiredPassengers) {
                 if (ask()) { // controller per chiedere se il player vuole
                     gameBoard.movePlayer(rocket, steps);
-                    rocket.getRocketPlayer().getMyBoard().checkStorage(rewardLoad);
+                    //load
                     return;
                 }
             }
