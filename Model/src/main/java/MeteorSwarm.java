@@ -1,50 +1,35 @@
+import java.util.HashMap;
 import java.util.Map;
 
 public class MeteorSwarm extends Card {
-    private Map<String, Object> meteoriteMap;
+    private Map<Integer, Integer> meteoriteMap; // size(1 small, 2 big), direction (1sx, 2up, 3dx, 4down)
 
     // Costruttore vuoto (aggiungilo solo se necessario)
-    public MeteorSwarm() {
-        // inizializzazione eventuale della mappa
+    public MeteorSwarm(Deck deck, int credit, int steps ) {
+        super(deck, credit, steps);
+        meteoriteMap = new HashMap<Integer, Integer>();
     }
 
-    // Metodo per controllare lo scudo
-    public void checkShield() {
-        // logica per controllare lo scudo
+    //
+    public void meteorSwarm (Gameboard gameBoard) {
+        Rocket rocketsArray[]=gameBoard.getRocketArray();
+        for (Map.Entry<Integer, Integer> entry : meteoriteMap.entrySet()) {
+            Integer size = entry.getKey();
+            Integer direction = entry.getValue();
+            //roll dice
+
+            int dice = 6; //esempio
+            for (Rocket rocket : rocketsArray) {
+                rocket.getRocketPlayer().getMyBoard().meteorShoot(size, direction, dice);
+            }
+
+
+
+        }
+
     }
 
-    // Metodo per gestire il lancio dei dadi
-    public void rollDice() {
-        // logica per il lancio dei dadi
-    }
 
-    // Metodo per attaccare la board di gioco
-    public void attackBoard() {
-        // logica per attaccare la board
-    }
 
-    // Metodo per controllare la situazione della board dopo l'attacco
-    public void checkBoard() {
-        // logica per controllare la board
-    }
-
-    // Metodo per verificare lo stato del trapano (drill)
-    public void checkDrill() {
-        // logica per verificare lo stato del drill
-    }
-
-    // Metodo per eliminare delle tessere dalla board
-    public void deleteTiles() {
-        // logica per eliminare tessere
-    }
-
-    // Getter e Setter per meteoriteMap, se necessari
-    public Map<String, Object> getMeteoriteMap() {
-        return meteoriteMap;
-    }
-
-    public void setMeteoriteMap(Map<String, Object> meteoriteMap) {
-        this.meteoriteMap = meteoriteMap;
-    }
 
 }
