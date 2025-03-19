@@ -1,8 +1,9 @@
 public class Enemies extends Card{
-    private int firePower;
-    private int win;
+    public int firePower;
 
-    public boolean playerWin(Player player) {
-
+    //costruttore
+    public Enemies(Deck deck, int credit, int steps){
+        super(deck, credit, steps);
+        this.firePower = firePower;
     }
 }

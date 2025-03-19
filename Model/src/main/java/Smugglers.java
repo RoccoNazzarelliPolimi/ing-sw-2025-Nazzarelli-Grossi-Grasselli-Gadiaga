@@ -1,2 +1,29 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Smugglers extends Enemies{
+    private List<Integer> rewardLoad;
+    private int loadLoss;
+
+    //costruttore
+    public Smugglers(Deck deck, int credit, int steps, int firePower){
+        super(deck, credit, steps, firePower);
+        this.rewardLoad = new ArrayList<>();
+        this.loadLoss = loadLoss;
+    }
+
+    public void smugglers(Gameboard gameBoard){
+        Rocket rocketsArray[]=gameBoard.getRocketArray();
+        for (Rocket rocket : rocketsArray) {
+            double passengerPower= rocket.getRocketPlayer().getMyBoard().checkFirePower();
+            if(passengerPower>firePower){
+                rocket.getRocketPlayer().getMyBoard().checkStorage(rewardLoad);
+                gameBoard.movePlayer(rocket, steps);
+                return;
+            }
+            else if(passengerPower<firePower){
+                rocket.getRocketPlayer().getMyBoard().removeStorage(loadLoss);
+            }
+        }
+    }
 }

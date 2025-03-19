@@ -52,12 +52,14 @@ public class Storage extends Tile {
     }
     //removes the cargo of that color
 
-    public void removeCargo(int type){
+    public boolean removeCargo(int type){
         if (cargoValues.contains(type)) {
             cargoValues.remove((Integer) type); // Rimuove il primo valore uguale a type
             numCargo--;
+            return true;
         } else {
             System.out.println("Error: No " + type + " cargo found.");
+            return false;
         }
     }
 

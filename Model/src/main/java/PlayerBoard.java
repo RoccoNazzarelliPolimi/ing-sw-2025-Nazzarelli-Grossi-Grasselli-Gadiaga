@@ -197,4 +197,28 @@ public class PlayerBoard {
         }
 
     }
+    public void removeStorage(int n){
+        int row;
+        int col;
+        while(n>0){
+            for(int j=4; j>0;j--){
+                for(row=0; row<numRows;row++){
+                    for(col=0; col<numColumns; col++){
+                        Tile tile = matrixBoard[row][col];
+                        if(tile instanceof Storage){
+                            for(int i=0; i<n; i++){
+                                if(((Storage)tile).removeCargo(j)){
+                                    n--;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+    public void shoot (Map<Integer, Integer> shootsMap){
+        //implementare
+    }
 }

@@ -20,7 +20,7 @@ public class AbandonedStation extends Card {
             if (rocket.getRocketPlayer().getMyBoard().checkPassangersPower() > requiredPassengers) {
                 if (ask()) { // controller per chiedere se il player vuole
                     gameBoard.movePlayer(rocket, steps);
-                    //load
+                    rocket.getRocketPlayer().getMyBoard().checkStorage(rewardLoad);
                     return;
                 }
             }
