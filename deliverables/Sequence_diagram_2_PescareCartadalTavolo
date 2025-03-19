@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36" version="26.1.1">
   <diagram name="Page-1" id="2YBvvXClWsGukQMizWep">
-    <mxGraphModel dx="1307" dy="629" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1069" dy="515" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -67,16 +67,16 @@
         <mxCell id="kGa-enVVRtIYIfq65YVT-152" value="&lt;b&gt;[while (time has nor ran out or not enough free cells remaining or not pickable tiles on the board)]&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="kGa-enVVRtIYIfq65YVT-131">
           <mxGeometry x="160" width="580" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="kGa-enVVRtIYIfq65YVT-153" value="PickTilesRequest()" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;" edge="1" parent="1" source="kGa-enVVRtIYIfq65YVT-129" target="kGa-enVVRtIYIfq65YVT-130">
+        <mxCell id="kGa-enVVRtIYIfq65YVT-153" value="PickTilesRequest()" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;" edge="1" parent="1" source="kGa-enVVRtIYIfq65YVT-130">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="228.51" y="280" as="sourcePoint" />
+            <mxPoint x="314" y="290" as="sourcePoint" />
             <Array as="points">
               <mxPoint x="313.51" y="280" />
             </Array>
-            <mxPoint x="528.51" y="280" as="targetPoint" />
+            <mxPoint x="150" y="280" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="kGa-enVVRtIYIfq65YVT-155" value="PickTileResponse(positionsOfTiles: List&amp;lt;Position&amp;gt;, column: int, row: int)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;" edge="1" parent="1" target="kGa-enVVRtIYIfq65YVT-129">
+        <mxCell id="kGa-enVVRtIYIfq65YVT-155" value="PickTileResponse(positionsOfTiles: List&amp;lt;Position&amp;gt;, column: int, row: int)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;" edge="1" parent="1" source="kGa-enVVRtIYIfq65YVT-129" target="kGa-enVVRtIYIfq65YVT-130">
           <mxGeometry x="0.002" relative="1" as="geometry">
             <mxPoint x="600" y="320" as="sourcePoint" />
             <Array as="points">
@@ -85,7 +85,7 @@
               <mxPoint x="243" y="375" />
               <mxPoint x="173" y="395" />
             </Array>
-            <mxPoint x="232.5" y="320" as="targetPoint" />
+            <mxPoint x="600" y="320" as="targetPoint" />
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
