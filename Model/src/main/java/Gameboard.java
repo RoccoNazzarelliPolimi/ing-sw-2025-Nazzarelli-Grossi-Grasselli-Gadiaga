@@ -10,6 +10,8 @@ public class Gameboard{
     private Deck deck;
     private int start_path;
     private int end_path;
+    private int Iteration = 0; //volte clessidra girata
+    private boolean timerRunning = false;
 
 
     //Costruttore
@@ -82,6 +84,10 @@ public class Gameboard{
                     }
 
                 }
+<<<<<<< HEAD
+                //manca la connessione con il controller per chiedere ai giocatori se girare la clessidra o no!
+=======
+>>>>>>> origin/main
 
                 if (rocket.getBoardLocation() + 1 == this.end_path + 1) {
 
@@ -242,4 +248,35 @@ public class Gameboard{
      {
 
      }
+
+    public void startHourglass() {
+        if (Iteration >= 2) {
+            System.out.println("Game Starts!");
+            return;
+            //connessione con controller per iniziare il gioco (CONTROLLER)
+        }
+        if (timerRunning) {
+            System.out.println("Timer already running.");
+            return;
+        }
+        System.out.println("Hourglass flipped, 90 seconds ");
+        timerRunning = true;
+        Iteration++;
+
+        Runnable timerTask = new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 90; i > 0; i--) {
+                    System.out.println("Secondo: " + i);
+                    try {
+                        Thread.sleep(1000); // Aspetta 1 secondo
+                    } catch (InterruptedException e) {
+                        System.out.println("Il timer è stato interrotto.");
+                        return;
+                    }
+                }
+                timerRunning = false;
+                System.out.println("La clessidra è finita. Si gira automaticamente di nuovo.");
+                startHourglass(); // Riparte automaticamente, andrebbe fatta partire con un tasto
+
 }

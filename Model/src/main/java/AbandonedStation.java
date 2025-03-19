@@ -12,27 +12,25 @@ public class AbandonedStation extends Card {
 
 }
 
-    public void AbandonedStation(Rocket rocketArray[], Storage storage, Gameboard gameboard) {
-        for (Rocket rocket : rocketArray) {
-            if (rocket.getPlayer().getMyBoard().checkPassangersPower() > requiredPassengers) {
-                if (ask()) // controller per chiedere se il player vuole
-                {
-                    gameboard.movePlayer(rocket, steps);
-                }
-
-
-
-
-
+    public void AbandonedStation(Storage storage, Gameboard gameBoard) {
+        Rocket rocketsArray[]=gameBoard.getRocketArray();
+        for (Rocket rocket : rocketsArray) {
+            if (rocket.getRocketPlayer().getMyBoard().checkPassangersPower() > requiredPassengers) {
+                if (ask()) { // controller per chiedere se il player vuole
+                    gameBoard.movePlayer(rocket, steps);
+                    //load
+                    return;
                 }
             }
 
 
         }
-        public boolean ask () {
-            return false;
-        }
-        public int getLoad () {
-            return 0;
-        }
     }
+
+    public boolean ask(){ //giusto per non fare errore
+        return true;
+    }
+    public int getLoad() {
+        return 0;
+    }
+}
