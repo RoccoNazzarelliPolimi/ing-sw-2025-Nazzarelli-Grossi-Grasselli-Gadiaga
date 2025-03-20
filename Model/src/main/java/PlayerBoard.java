@@ -224,6 +224,7 @@ public class PlayerBoard {
             }
         }
         return power;
+        int a =1;
     }
 
     public int checkHeaterPower(){
