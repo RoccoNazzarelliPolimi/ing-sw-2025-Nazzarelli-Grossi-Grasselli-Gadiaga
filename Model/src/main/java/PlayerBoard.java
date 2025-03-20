@@ -177,15 +177,11 @@ public class PlayerBoard {
 
 
     public boolean matchesConnectorHor(Tile tileleft, Tile tileright) {
-
-        if (tileleft.getConnectors()[2] == tileright.getConnectors()[0])
-        {
+        if (tileleft.getConnectors()[2] == tileright.getConnectors()[0]) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
-
     }
 
     public boolean matchesConnectorVer(Tile tiledown, Tile tileup) {
@@ -335,5 +331,8 @@ public class PlayerBoard {
     }
     public Tile[] getStockInitialArray() {
         return stockInitialArray;
+    }
+    public Tile[][] getMatrixBoard(){
+        return matrixBoard;
     }
 }
