@@ -9,6 +9,11 @@ public class AlienAddOn extends Tile {
         this.color = color;
     }
 
+
+    public void accept(TileVisitor visitor) {
+        visitor.visit(this);
+    }
+
     public AlienColor getColor() {
         return this.color;
     }

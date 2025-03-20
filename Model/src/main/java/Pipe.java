@@ -9,4 +9,8 @@ public class Pipe extends Tile {
     public int[] getSides() {
         return this.connectors;
     }
+
+    public void accept(TileVisitor visitor) {
+        visitor.visit(this);
+    }
 }

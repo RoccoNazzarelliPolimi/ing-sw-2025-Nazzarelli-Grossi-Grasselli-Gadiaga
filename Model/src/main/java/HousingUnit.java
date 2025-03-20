@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.Optional;
+import java.util.List;
 
 public class HousingUnit extends Tile {
     private int numAstronauts;
@@ -29,8 +31,42 @@ public class HousingUnit extends Tile {
         return (alien != null) ? alien.getColor() : null;
     }
 
-    public AlienColor checkAlienAddOn() {
-        return null; //implementare
+    //checks if this HousingUnit has an AlienAddOn near , if it does it returns the color
+    public List<AlienColor> checkAlienAddOn() {
+        List<AlienColor> color= new ArrayList<>();; //creo una lista perchè magari c'è più di un AddOn attaccato
+        Tile[][] matrix = getPlayerBoard().getMatrixBoard(); //this player PlayerBoard
+        int row = getRow(); //row and col of this housing unit
+        int col = getCol();
+
+        //Sx
+        if (matrix[row][col - 1] != null) { //controllo se c'è una tile
+            Tile nextTile= matrix[row][col - 1];
+            if (nextTile instanceof AlienAddOn) { //se è un add on aggiungo il colore alla lista
+                color.add(((AlienAddOn) nextTile).getColor());
+            }
+        }
+        //Dx
+        if (matrix[row][col + 1] != null) {
+            Tile nextTile= matrix[row][col + 1];
+            if (nextTile instanceof AlienAddOn) { //se è un add on aggiungo il colore alla lista
+                color.add(((AlienAddOn) nextTile).getColor());
+            }
+        }
+        //Up
+        if (matrix[row - 1][col] != null) {
+            Tile nextTile= matrix[row - 1][col];
+            if (nextTile instanceof AlienAddOn) { //se è un add on aggiungo il colore alla lista
+                color.add(((AlienAddOn) nextTile).getColor());
+            }
+        }
+        //Down
+        if (matrix[row + 1][col] != null) {
+            Tile nextTile= matrix[row + 1][col];
+            if (nextTile instanceof AlienAddOn) { //se è un add on aggiungo il colore alla lista
+                color.add(((AlienAddOn) nextTile).getColor());
+            }
+        }
+        return color;
     }
 
 
@@ -44,24 +80,37 @@ public class HousingUnit extends Tile {
         this.numAstronauts = 2;
     }
 
-    // Rimuovere n astronauts
-    public void removeAstronauts(int n){
-        if (n>0 && n<=numAstronauts) {
-            numAstronauts -= n;
+    // Removes 1 astronaut
+    public boolean removeAstronauts(){
+        if (numAstronauts>0) {
+            numAstronauts -= 1;
+            return true;
         } else {
-            System.out.println("Number not allowed!");
+            System.out.println("Not enough astronauts");
+            return false;
         }
     }
 
     // Aggiunge un alieno se c'è un Add-On
     public void addAlien() {
-        AlienColor color = checkAlienAddOn(); // Trova il colore dell'Add-On adiacente
-
-        if (color != null) { // Se esiste un Alien Add-On, aggiunge l'alieno
+        List<AlienColor> color = checkAlienAddOn(); // Trova il colore dell'Add-On adiacente
+        if (color.size() == 1) { //se esiste e se è solo uno
+            AlienColor col= color.get(0);
             this.numAlien = 1;
-            this.alien = new Alien(this, color); //Crea un nuovo alieno
+            this.alien = new Alien(this, col); //Crea un nuovo alieno
+        }else if (color.size() > 1) { //se esiste ed è maggiore di uno
+            AlienColor col= askColor(); //sceglie quale mettere
+            this.numAlien = 1;
+            this.alien = new Alien(this, col);
+        }
+        else {
+            System.out.println("No alien add on");
         }
     }
+    public AlienColor askColor() { //finto
+        return null;
+    }
+
     // Rimuove l'alieno
     public void removeAliens() {
         if (this.alien != null) { // Controlla se c'è un alieno prima di rimuoverlo
@@ -70,6 +119,11 @@ public class HousingUnit extends Tile {
         } else {
             System.out.println("No alien to remove");
         }
+    }
+
+
+    public void accept(TileVisitor visitor) {
+        visitor.visit(this);
     }
 
     public int[] getConnectors() {

@@ -29,5 +29,9 @@ public class Heater extends Tile {
         return this.connectors;
     }
 
+
+    public void accept(TileVisitor visitor) {
+        visitor.visit(this);
+    }
 }
 
