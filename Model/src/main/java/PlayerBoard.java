@@ -264,12 +264,51 @@ public class PlayerBoard {
     } //controller
 
     public int checkCabinConnection() { //conta quante HousingUnit sono connesse direttamente tra loro
-        int connection=0;
+        int connection=1;
+        boolean[][] visited = new boolean[numRows][numColumns]; // Matrice per tracciare le HousingUnit già visitate
+        for (int i = 0; i < numRows; i++) {
+            for (int j = 0; j < numColumns; j++) {
+                if (!visited[i][j] && (matrixBoard[i][j] instanceof HousingUnit || matrixBoard[i][j] instanceof CentralHousingUnit)) {
+                    visited[i][j] = true; // Segna come visitata
+                    // Sx
+                    if (matrixBoard[i][j - 1] != null) { //controllo se c'è una tile
+                        Tile nextTile = matrixBoard[i][j - 1];
+                        if (!visited[i][j-1] && (nextTile instanceof HousingUnit || nextTile instanceof CentralHousingUnit)) {
+                            connection++;
+                        }
+                    }
+                    // Dx
+                    if (matrixBoard[i][j + 1] != null) {
+                        Tile nextTile = matrixBoard[i][j + 1];
+                        if (!visited[i][j + 1] && (nextTile instanceof HousingUnit || nextTile instanceof CentralHousingUnit)) {
+                            connection++;
+                        }
+                    }
+                    // Up
+                    if (matrixBoard[i - 1][j] != null) {
+                        Tile nextTile = matrixBoard[i - 1][j];
+                        if (!visited[i - 1][j] && (nextTile instanceof HousingUnit || nextTile instanceof CentralHousingUnit)) {
+                            connection++;
+                        }
+                    }
+                    // Down
+                    if (matrixBoard[i + 1][j] != null) {
+                        Tile nextTile = matrixBoard[i + 1][j];
+                        if (!visited[i + 1][j] && (nextTile instanceof HousingUnit || nextTile instanceof CentralHousingUnit)) {
+                            connection++;
+                        }
+                    }
 
-        //implementare
 
+                }
+            }
+        }
+        if (connection==1){ //because I initialized it to 1
+            return 0;
+        }
         return connection;
     }
+
     public void checkStorage(List<Integer> load){
         int size=load.size();
         int row;
