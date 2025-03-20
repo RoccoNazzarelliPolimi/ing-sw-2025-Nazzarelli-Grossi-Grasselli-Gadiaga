@@ -16,9 +16,20 @@ public class Tile {
         return this.connectors;
     }
 
-
-    public void reserveTile() {
-        // Implementazione per riservare la tile
+    //Puts the tile in the player's stock
+    //This method need to know which player wants to reserve the tile
+    public void reserveTile(Player player) {
+        PlayerBoard board = player.getMyBoard();
+        this.playerBoard = board; //I'm assigning this tile to the player board since the player needs to use it if he wants to reserve it
+        Tile[] stock = board.getStockInitialArray();
+        for (int i = 0; i < stock.length; i++) {
+            if (stock[i] == null) {
+                stock[i] = this; // Inserisce la Tile nello stock
+                return;
+            }
+        }
+        //If the array is full
+        System.out.println("Error: the stock is full");
     }
 
     //This rotates the tile towards the right n times

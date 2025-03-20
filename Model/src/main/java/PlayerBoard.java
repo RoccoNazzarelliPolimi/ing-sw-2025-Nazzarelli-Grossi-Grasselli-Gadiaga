@@ -29,7 +29,7 @@ public class PlayerBoard {
         this.numberBatteries = 0;
         this.heaterPowerPlayer = 0;
         this.numberAliens = 0;
-        this.stockInitialArray = new Tile[stockSize];
+        this.stockInitialArray = new Tile[2];
     }
 
 
@@ -333,5 +333,9 @@ public class PlayerBoard {
     }
     public void meteorShoot (int size, int direction, int dice){
         //implementare
+    }
+
+    public Tile[] getStockInitialArray() {
+        return stockInitialArray;
     }
 }
