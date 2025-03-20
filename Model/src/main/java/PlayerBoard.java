@@ -7,7 +7,7 @@ public class PlayerBoard {
     private int numColumns;
     private Tile[][] matrixBoard;
     private Player player;
-    private int firePowerPlayer;
+    private double firePowerPlayer;
     private int passengersPower;
     private int numberTile;
     private int numberBatteries;
@@ -35,22 +35,16 @@ public class PlayerBoard {
 
     // Metodo per aggiungere una tessera
     public void addTile(Tile tile, int row, int col) {
-
         if (row >= 0 && row < numRows && col >= 0 && col < numColumns && matrixBoard[row][col] == null) {
             if (row >= 4 && row <= 9 && col >= 3 && col <= 11) {
 
-                if ((row!=4 && col!=3) && (row!=4 && col!=4) && (row!=4 && col!=5) && (row!=4 && col!=6) && (row!=4 && col!=8) && (row!=4 && col!=9) && (row!=4 && col!=10) && (row!=4 && col!=11) && (row!=5 && col!=3) && (row!=5 && col!=4) && (row!=5 && col!=5) && (row!=5 && col!=9) && (row!=5 && col!=10) && (row!=5 && col!=11) && (row!=6 && col!=3) && (row!=6 && col!=4) && (row!=6 && col!=10) && (row!=6 && col!=11) && (row!=7 && col!=3) && (row!=7 && col!=4) && (row!=7 && col!=10) && (row!=7 && col!=11) && (row!=8 && col!=3) && (row!=8 && col!=11) && (row!=9 && col!=11) && (row!=9 && col!=3) && (row!=9 && col!=7))
-                {
+                if ((row!=4 && col!=3) && (row!=4 && col!=4) && (row!=4 && col!=5) && (row!=4 && col!=6) && (row!=4 && col!=8) && (row!=4 && col!=9) && (row!=4 && col!=10) && (row!=4 && col!=11) && (row!=5 && col!=3) && (row!=5 && col!=4) && (row!=5 && col!=5) && (row!=5 && col!=9) && (row!=5 && col!=10) && (row!=5 && col!=11) && (row!=6 && col!=3) && (row!=6 && col!=4) && (row!=6 && col!=10) && (row!=6 && col!=11) && (row!=7 && col!=3) && (row!=7 && col!=4) && (row!=7 && col!=10) && (row!=7 && col!=11) && (row!=8 && col!=3) && (row!=8 && col!=11) && (row!=9 && col!=11) && (row!=9 && col!=3) && (row!=9 && col!=7)) {
                     matrixBoard[row][col] = tile;
                     numberTile++;
-                }
-                else
-                {
+                } else {
                     System.out.println("You are not allowed to insert a cell in that position!!!!");
                 }
-            }
-            else
-            {
+            } else {
                 System.out.println("You are not allowed to insert a cell in that position!!!!");
             }
         }
@@ -63,8 +57,7 @@ public class PlayerBoard {
         if(matrixBoard[row][col] != null) {
             matrixBoard[row][col] = null;
             numberTile--;
-        }
-        else {
+        } else {
             System.out.println("Tile Not Found");
         }
     }
@@ -156,124 +149,116 @@ public class PlayerBoard {
 
 
     // Metodo che elimina una tile quando non è connessa bene
-    public void deleteTile(Tile tile, int row, int col)
-    {
-
+    public void deleteTile(Tile tile, int row, int col) {
         this.matrixBoard[row][col] = null;
-
         this.player.addScore(-1);
-
-        if (tile instanceof Drill)
-        {
+        if (tile instanceof Drill) {
             this.firePowerPlayer = this.firePowerPlayer - 1;
         }
-        else if (tile instanceof HousingUnit)
-        {
-
-            if (((HousingUnit) tile).hasAlien())
-            {
+        else if (tile instanceof HousingUnit) {
+            if (((HousingUnit) tile).hasAlien()) {
                 this.passengersPower = this.passengersPower - 2;
-            }
-            else
-            {
+            } else {
                 this.passengersPower = this.passengersPower - ((HousingUnit) tile).countPassengers();
             }
-
         }
-        else if (tile instanceof Heater)
-        {
+        else if (tile instanceof Heater) {
             this.heaterPowerPlayer = this.heaterPowerPlayer - ((Heater) tile).getValue();
         }
-        else if (tile instanceof PowerCenter)
-        {
+        else if (tile instanceof PowerCenter) {
             this.numberBatteries = this.numberBatteries - ((PowerCenter) tile).checkBattery();
         }
-
     }
 
 
     public boolean matchesConnectorHor(Tile tileleft, Tile tileright) {
-
-        if (tileleft.getConnectors()[2] == tileright.getConnectors()[0])
-        {
+        if (tileleft.getConnectors()[2] == tileright.getConnectors()[0]) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
-
     }
 
     public boolean matchesConnectorVer(Tile tiledown, Tile tileup) {
-
-        if (tiledown.getConnectors()[1] == tileup.getConnectors()[3])
-        {
+        if (tiledown.getConnectors()[1] == tileup.getConnectors()[3]) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
-
     }
 
+    //FIREPOWER:
     //Check the fire power of the playerBoard
     //attenzione a quando bisogna vedere se uno vuole usare le batterie o no e bisogna fare scegliere ai giocatori in ordine
     public double checkFirePower(){
-
         double power = 0;
-
-        for (int i = 0; i < this.numRows; i++)
-        {
-            for (int j = 0; j < this.numColumns; j ++)
-            {
-                  if( this.matrixBoard[i][j] instanceof Drill)
-                  {
+        for (int i = 0; i < this.numRows; i++) {
+            for (int j = 0; j < this.numColumns; j ++) {
+                  if( this.matrixBoard[i][j] instanceof Drill) {
                       power = power + ((Drill) matrixBoard[i][j]).getPower();
                   }
             }
         }
         return power;
     }
+    public void setFirePower(){
+        this.firePowerPlayer = checkFirePower();
+    }
 
+    //HEATER:
     public int checkHeaterPower(){
         int power = 0;
-
-        for (int i = 0; i < this.numRows; i++)
-        {
-            for (int j = 0; j < this.numColumns; j ++)
-            {
-                if( this.matrixBoard[i][j] instanceof Heater)
-                {
+        for (int i = 0; i < this.numRows; i++) {
+            for (int j = 0; j < this.numColumns; j ++) {
+                if( this.matrixBoard[i][j] instanceof Heater) {
                     power = power + ((Heater) matrixBoard[i][j]).getValue();
                 }
             }
         }
-
         return power;
     }
+    public void setHeaterPower(){
+        this.heaterPowerPlayer = checkHeaterPower();
+    }
 
+    //PASSENGER:
     public int checkPassengersPower(){
         int power = 0;
-
-        for (int i = 0; i < this.numRows; i++)
-        {
-            for (int j = 0; j < this.numColumns; j ++)
-            {
-                if(this.matrixBoard[i][j] instanceof HousingUnit)
-                {
+        for (int i = 0; i < this.numRows; i++) {
+            for (int j = 0; j < this.numColumns; j ++) {
+                if(this.matrixBoard[i][j] instanceof HousingUnit) {
                     power = power + ((HousingUnit) matrixBoard[i][j]).countPassengers();
                 }
-                else if (this.matrixBoard[i][j] instanceof CentralHousingUnit)
-                {
+                else if (this.matrixBoard[i][j] instanceof CentralHousingUnit) {
                     power = power + ((CentralHousingUnit) matrixBoard[i][j]).countPassengers();
                 }
             }
         }
         return power;
     }
+    //At the start of the game (to set the attribute)
+    public void setPassengerPower(){
+        this.passengersPower = checkPassengersPower();
+    }
+    //During the game to modify the attribute and the tiles
     public void modifyPassengerPower(int passengerLoss){
         this.passengersPower = this.passengersPower - passengerLoss;
+        while(passengerLoss > 0){
+            int row = askrow(); // chiedo al player da che housing unit vuole togliere un passenger
+            int col = askcol();
+            if(((HousingUnit) matrixBoard[row][col]).removeAstronauts()) {//I'm removing 1 astronaut form the selected housing unit
+               passengerLoss--;
+            }
+        }
     }
+    public int askrow(){
+        int row = 0;
+        return  row;
+    } //controller
+    public int askcol(){
+        int col = 0;
+        return  col;
+    } //controller
 
     public int checkCabinConnection() { //conta quante HousingUnit sono connesse direttamente tra loro
         int connection=0;
