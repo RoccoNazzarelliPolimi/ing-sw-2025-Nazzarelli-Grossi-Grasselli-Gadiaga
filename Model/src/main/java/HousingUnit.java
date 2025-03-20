@@ -44,12 +44,14 @@ public class HousingUnit extends Tile {
         this.numAstronauts = 2;
     }
 
-    // Rimuovere n astronauts
-    public void removeAstronauts(int n){
-        if (n>0 && n<=numAstronauts) {
-            numAstronauts -= n;
+    // Removes 1 astronaut
+    public boolean removeAstronauts(){
+        if (numAstronauts>0) {
+            numAstronauts -= 1;
+            return true;
         } else {
-            System.out.println("Number not allowed!");
+            System.out.println("Not enough astronauts");
+            return false;
         }
     }
 
