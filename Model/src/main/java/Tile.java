@@ -59,4 +59,7 @@ public class Tile {
     public void setCol(int column) {
         this.column = column;
     }
+
+    public void accept(TileRemovalVisitor removalVisitor) {
+    }
 }

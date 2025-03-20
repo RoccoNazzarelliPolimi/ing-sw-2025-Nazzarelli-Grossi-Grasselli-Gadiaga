@@ -7,6 +7,11 @@ public class CentralHousingUnit extends Tile{
         this.numAstronauts = 0;
     }
 
+
+    public void accept(TileVisitor visitor) {
+        visitor.visit(this);
+    }
+
     //metodo per contare gli astronauti a bordo
     public int countPassengers() {
         return numAstronauts;

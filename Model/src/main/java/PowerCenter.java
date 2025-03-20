@@ -23,6 +23,10 @@ public class PowerCenter extends Tile{
         }
     }
 
+    public void accept(TileVisitor visitor) {
+        visitor.visit(this);
+    }
+
     public int[] getSides() {
         return this.connectors;
     }

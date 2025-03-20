@@ -72,6 +72,11 @@ public class HousingUnit extends Tile {
         }
     }
 
+
+    public void accept(TileVisitor visitor) {
+        visitor.visit(this);
+    }
+
     public int[] getConnectors() {
         return connectors;
     }

@@ -75,4 +75,8 @@ public class Storage extends Tile {
     public int[] getConnectors() {
         return this.connectors;
     }
+
+    public void accept(TileVisitor visitor) {
+        visitor.visit(this);
+    }
 }

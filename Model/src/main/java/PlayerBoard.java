@@ -156,39 +156,30 @@ public class PlayerBoard {
 
 
     // Metodo che elimina una tile quando non è connessa bene
-    public void deleteTile(Tile tile, int row, int col)
-    {
+    public void deleteTile(Tile tile, int row, int col) {
+        if (matrixBoard[row][col] == null) return;
 
-        this.matrixBoard[row][col] = null;
-
+        matrixBoard[row][col] = null;
         this.player.addScore(-1);
 
-        if (tile instanceof Drill)
-        {
-            this.firePowerPlayer = this.firePowerPlayer - 1;
-        }
-        else if (tile instanceof HousingUnit)
-        {
+        TileRemovalVisitor removalVisitor = new TileRemovalVisitor(this, this.player);
+        tile.accept(removalVisitor);
+    }
 
-            if (((HousingUnit) tile).hasAlien())
-            {
-                this.passengersPower = this.passengersPower - 2;
-            }
-            else
-            {
-                this.passengersPower = this.passengersPower - ((HousingUnit) tile).countPassengers();
-            }
+    public void decreaseFirePower(int amount) {
+        this.firePowerPlayer -= amount;
+    }
 
-        }
-        else if (tile instanceof Heater)
-        {
-            this.heaterPowerPlayer = this.heaterPowerPlayer - ((Heater) tile).getValue();
-        }
-        else if (tile instanceof PowerCenter)
-        {
-            this.numberBatteries = this.numberBatteries - ((PowerCenter) tile).checkBattery();
-        }
+    public void decreasePassengersPower(int amount) {
+        this.passengersPower -= amount;
+    }
 
+    public void decreaseHeaterPower(int amount) {
+        this.heaterPowerPlayer -= amount;
+    }
+
+    public void decreaseBatteries(int amount) {
+        this.numberBatteries -= amount;
     }
 
 
@@ -277,7 +268,9 @@ public class PlayerBoard {
 
     public int checkCabinConnection() { //conta quante HousingUnit sono connesse direttamente tra loro
         int connection=0;
-        //implementare
+
+        while()
+
         return connection;
     }
     public void checkStorage(List<Integer> load){

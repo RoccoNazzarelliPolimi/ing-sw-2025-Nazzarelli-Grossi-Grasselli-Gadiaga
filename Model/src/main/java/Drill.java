@@ -33,4 +33,8 @@ public class Drill extends Tile {
 
 
 
+    public void accept(TileVisitor visitor) {
+        visitor.visit(this);
+    }
+
 }
