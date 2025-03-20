@@ -270,7 +270,7 @@ public class PlayerBoard {
     public int checkCabinConnection() { //conta quante HousingUnit sono connesse direttamente tra loro
         int connection=0;
 
-        while()
+        //implementare
 
         return connection;
     }
