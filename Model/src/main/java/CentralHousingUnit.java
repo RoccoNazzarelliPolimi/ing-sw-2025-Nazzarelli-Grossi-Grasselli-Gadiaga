@@ -2,7 +2,7 @@ public class CentralHousingUnit extends Tile{
     private int numAstronauts;
 
     //costruttore
-    public CentralHousingUnit(int[] connectors, int row, int column, PlayerBoard playerBoard) {
+    public CentralHousingUnit(int[] connectors, int row, int column, PlayerBoard playerBoard, int numAstronauts) {
         super(connectors, row, column, playerBoard);
         this.numAstronauts = 0;
     }

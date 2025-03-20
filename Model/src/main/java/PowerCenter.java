@@ -3,7 +3,7 @@ public class PowerCenter extends Tile{
     private int availableBattery; //how many batteries are available to use
 
     //Costruttore
-    public PowerCenter(int[] connectors, int row, int column, PlayerBoard playerBoard, int capacityBattery) {
+    public PowerCenter(int[] connectors, int row, int column, PlayerBoard playerBoard, int capacityBattery, int availableBattery) {
         super(connectors, row, column, playerBoard);
         this.capacityBattery = capacityBattery;
         this.availableBattery = capacityBattery; //at the beginning the availability is equal to the capacity

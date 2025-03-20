@@ -6,7 +6,7 @@ public class Smugglers extends Enemies{
     private int loadLoss;
 
     //costruttore
-    public Smugglers(Deck deck, int credit, int steps, int firePower){
+    public Smugglers(Deck deck, int credit, int steps, int firePower, List<Integer> rewardLoad, int loadLoss) {
         super(deck, credit, steps, firePower);
         this.rewardLoad = new ArrayList<>();
         this.loadLoss = loadLoss;
