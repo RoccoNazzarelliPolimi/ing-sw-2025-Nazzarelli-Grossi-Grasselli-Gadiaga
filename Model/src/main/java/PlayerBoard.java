@@ -1,5 +1,4 @@
 import java.util.List;
-import java.util.ArrayList;
 import java.util.*;
 
 public class PlayerBoard {
@@ -185,6 +184,7 @@ public class PlayerBoard {
     }
 
     //Check the fire power of the playerBoard
+    //attenzione a quando bisogna vedere se uno vuole usare le batterie o no e bisogna fare scegliere ai giocatori in ordine
     public double checkFirePower(){
 
         double power = 0;
@@ -219,7 +219,7 @@ public class PlayerBoard {
         return power;
     }
 
-    public int checkPassangersPower(){
+    public int checkPassengersPower(){
         int power = 0;
 
         for (int i = 0; i < this.numRows; i++)

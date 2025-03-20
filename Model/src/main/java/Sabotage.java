@@ -8,7 +8,7 @@ public class Sabotage extends Card{
         int min = 0;
         Rocket loser=null;
         for (Rocket rocket : rocketsArray) {
-            int current= rocket.getRocketPlayer().getMyBoard().checkPassangersPower();
+            int current= rocket.getRocketPlayer().getMyBoard().checkPassengersPower();
             if (current<min) {
                 min=current;
                 loser= rocket;

@@ -17,7 +17,7 @@ public class AbandonedStation extends Card {
     public void AbandonedStation(Storage storage, Gameboard gameBoard) {
         Rocket rocketsArray[]=gameBoard.getRocketArray();
         for (Rocket rocket : rocketsArray) {
-            if (rocket.getRocketPlayer().getMyBoard().checkPassangersPower() > requiredPassengers) {
+            if (rocket.getRocketPlayer().getMyBoard().checkPassengersPower() > requiredPassengers) {
                 if (ask()) { // controller per chiedere se il player vuole
                     gameBoard.movePlayer(rocket, steps);
                     rocket.getRocketPlayer().getMyBoard().checkStorage(rewardLoad);
