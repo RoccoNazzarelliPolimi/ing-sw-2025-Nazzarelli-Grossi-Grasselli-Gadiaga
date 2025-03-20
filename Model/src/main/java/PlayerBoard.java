@@ -1,5 +1,4 @@
 import java.util.List;
-import java.util.ArrayList;
 import java.util.*;
 
 public class PlayerBoard {
@@ -61,24 +60,52 @@ public class PlayerBoard {
 
     // Metodo per rimuovere una tessera
     public void removeTile(int row, int col) {
-        if (row >= 0 && row < numRows && col >= 0 && col < numColumns && matrixBoard[row][col] != null) {
+        if(matrixBoard[row][col] != null) {
             matrixBoard[row][col] = null;
             numberTile--;
+        }
+        else {
+            System.out.println("Tile Not Found");
         }
     }
 
 
     // Metodo per contare i connettori aperti
     public int countOpenConnectors() {
-        int count = 0;
+        int openConnectors = 0;
         for (int i = 0; i < numRows; i++) {
             for (int j = 0; j < numColumns; j++) {
                 if (matrixBoard[i][j] != null) {
-                    //count += matrixBoard[i][j].getOpenConnectors();
+                    Tile currentTile = matrixBoard[i][j];
+                    int[] connectors = currentTile.getConnectors();
+                    //Sx check
+                    if (j == 0 || matrixBoard[i][j - 1] == null) {
+                        if (connectors[0] != 0) {
+                            openConnectors++;
+                        }
+                    }
+                    // Dx check
+                    if (j == numColumns - 1 || matrixBoard[i][j + 1] == null) {
+                        if (connectors[2] != 0) {
+                            openConnectors++;
+                        }
+                    }
+                    // Up check
+                    if (i == 0 || matrixBoard[i - 1][j] == null) {
+                        if (connectors[1] != 0) {
+                            openConnectors++;
+                        }
+                    }
+                    //Down check
+                    if (i == numRows - 1 || matrixBoard[i + 1][j] == null) {
+                        if (connectors[3] != 0) {
+                            openConnectors++;
+                        }
+                    }
                 }
             }
         }
-        return count;
+        return openConnectors;
     }
 
     public boolean checkBoardConnections() {
@@ -190,6 +217,7 @@ public class PlayerBoard {
     }
 
     //Check the fire power of the playerBoard
+    //attenzione a quando bisogna vedere se uno vuole usare le batterie o no e bisogna fare scegliere ai giocatori in ordine
     public double checkFirePower(){
 
         double power = 0;
@@ -224,7 +252,7 @@ public class PlayerBoard {
         return power;
     }
 
-    public int checkPassangersPower(){
+    public int checkPassengersPower(){
         int power = 0;
 
         for (int i = 0; i < this.numRows; i++)

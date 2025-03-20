@@ -3,12 +3,12 @@ import java.util.List;
 
 // Classe Slavers
 public class Slavers extends Enemies {
-    private int passangerLoss;
+    private int passengerLoss;
 
     //costruttore
-    public Slavers(Deck deck, int credit, int steps, int firePower){
+    public Slavers(Deck deck, int credit, int steps, int firePower, int passengerLoss){
         super(deck, credit, steps, firePower);
-        this.passangerLoss = passangerLoss;
+        this.passengerLoss = passengerLoss;
     }
     public void slavers(Gameboard gameBoard){
         Rocket rocketsArray[]=gameBoard.getRocketArray();
@@ -20,7 +20,7 @@ public class Slavers extends Enemies {
                 return;
             }
             else if(passengerPower<firePower){
-                rocket.getRocketPlayer().getMyBoard().modifyPassengerPower(passangerLoss);
+                rocket.getRocketPlayer().getMyBoard().modifyPassengerPower(passengerLoss);
             }
         }
     }

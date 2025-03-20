@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -5,9 +6,9 @@ public class Planets extends Card{
     private Map<Integer, List<Integer>> planetCargo; // Mappa: numero del pianeta → lista dei cargo
 
     //costruttore
-    public Planets(Deck deck, int credit, int steps){
+    public Planets(Deck deck, int credit, int steps, Map<Integer, List<Integer>> planetCargo){
         super(deck, credit, steps);
-        Map<Integer, List<String>> planetCargo;
+        planetCargo = new HashMap<Integer, List<Integer>>();
     }
 
     public void planets (Gameboard gameBoard){

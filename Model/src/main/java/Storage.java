@@ -2,18 +2,16 @@ import java.util.ArrayList;
 import java.util.List;
 public class Storage extends Tile {
     private int capacity;
-    private int[] sides;
     private int numCargo;
     private boolean canRed;
     private List<Integer> cargoValues; //4 rosso, 3 giallo, 2 verde, 1 blu
 
-    public Storage(int row, int column, PlayerBoard playerBoard) {
-        super(row, column, playerBoard);
+    public Storage(int[] connectors, int row, int column, PlayerBoard playerBoard,int capacity, int numCargo,  boolean canRed, List<Integer> cargoValues) {
+        super(connectors, row, column, playerBoard);
         this.capacity = capacity;
-        this.sides =  new int[3];
         this.numCargo = 0;
         this.canRed = canRed;
-        this.cargoValues = new ArrayList<>(); //max three cargo
+        this.cargoValues = new ArrayList<>(); //max 3 cargo
     }
 
     //method that checks the capacity of the storage unit left
@@ -41,28 +39,32 @@ public class Storage extends Tile {
     }
 
     //adding one cargo
-    public void addCargo(int type){
+    public boolean addCargo(int type){
         // Controllo per il cargo rosso
         if (type == 4 && !canRed) {
             System.out.println("Error: This storage can't contain a red cargo.");
-            return;
+            return false;
         }
 
         // Controllo se c'è spazio disponibile
         if (checkCapacity() > 0) {
             cargoValues.add(type);
             numCargo++;
+            return true;
         } else {
             System.out.println("Error: Not enough space to add cargo.");
+            return false;
         }
     }
     //removes the cargo of that color
-    public void removeCargo(int type){
+    public boolean removeCargo(int type){
         if (cargoValues.contains(type)) {
             cargoValues.remove((Integer) type); // Rimuove il primo valore uguale a type
             numCargo--;
+            return true;
         } else {
             System.out.println("Error: No " + type + " cargo found.");
+            return false;
         }
     }
 
@@ -70,7 +72,7 @@ public class Storage extends Tile {
         return cargoValues;
     }
 
-    public int[] getSides() {
-        return sides;
+    public int[] getConnectors() {
+        return this.connectors;
     }
 }
