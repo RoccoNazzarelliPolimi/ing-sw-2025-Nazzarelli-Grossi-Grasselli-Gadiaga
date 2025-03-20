@@ -22,39 +22,31 @@ public class Deck {
                 this.random = new Random();
         }
 
-        // Metodo che inizializza mainDeck con carte generate
-        public void setDeck() {
-                // Inizializziamo le 40 carte del mainDeck
-                for (int i = 0; i < mainDeck.length; i++) {
-                        mainDeck[i] = new Card();// inserire parametri se necessari);
-                }
-
-                // Copiamo le carte da mainDeck nella lista gameDeck
-                Collections.addAll(gameDeck, mainDeck);
-        }
 
         // Metodo per mischiare il deck di gioco
         public void shuffleDeck() {
-
-                Collections.shuffle(gameDeck);
+                Collections.shuffle(gameDeck, random);
         }
 
 
 
-        public Card[] createSubDecks; {
+        //metodo per creare 4 subdeck
+        public int[] createSubDecks; {
                 //seleziono 4 gruppi da 3 carte
                 List<Card> tempDeck = new ArrayList<>();
+                Collections.addAll(tempDeck, mainDeck);
+                Collections.shuffle(tempDeck, random);
 
-                for (int i = 0; i < tempDeck.size(); i++) {
+                for (int i = 0; i < 3; i++) {
                         Deck1[i] = tempDeck.remove(0);
                 }
-                for (int i = 0; i < tempDeck.size(); i++) {
+                for (int i = 0; i < 3; i++) {
                         Deck2[i] = tempDeck.remove(0);
                 }
-                for (int i = 0; i < tempDeck.size(); i++) {
+                for (int i = 0; i < 3; i++) {
                         Deck3[i] = tempDeck.remove(0);
                 }
-                for (int i = 0; i < tempDeck.size(); i++) {
+                for (int i = 0; i < 3; i++) {
                         Deck4[i] = tempDeck.remove(0);
                 }
 
@@ -63,9 +55,6 @@ public class Deck {
                 Collections.addAll(gameDeck, Deck2);
                 Collections.addAll(gameDeck, Deck3);
                 Collections.addAll(gameDeck, Deck4);
-
-                //mischio mazzo di gioco
-                Collections.shuffle(gameDeck, random);
 
         }
         // Metodo per pescare una carta dal deck

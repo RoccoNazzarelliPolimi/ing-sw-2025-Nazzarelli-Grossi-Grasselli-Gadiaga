@@ -17,17 +17,17 @@ public class Game {
     // Metodo per iniziare il gioco,
     public void startGame() {
         gameboard.startHourglass();
-        deckGame.shuffleDeck();
-        System.out.println("Game starting");//mischio il mazzo quando inizia
-
-
+        System.out.println("Game starting");
     }
 
 
-    // Metodo per impostare il mazzo di carte
+    // Metodo per impostare il mazzo di carte di gioco
     public Deck setDeck() {
         this.deckGame = new Deck();
-        return this.deckGame;
+        deckGame.shuffleDeck();
+        System.out.println("Deck created");
+        return deckGame;
+
     }
 
 
