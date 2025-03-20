@@ -19,7 +19,7 @@ public class PlayerBoard {
 
 
     // Costruttore
-    public PlayerBoard(int numRows, int numColumns, Player player, int stockSize) {
+    public PlayerBoard(int numRows, int numColumns, Player player) {
         this.numRows = numRows;
         this.numColumns = numColumns;
         this.matrixBoard = new Tile[numRows][numColumns];
@@ -30,17 +30,34 @@ public class PlayerBoard {
         this.numberBatteries = 0;
         this.heaterPowerPlayer = 0;
         this.numberAliens = 0;
-        this.stockInitialArray = new Tile[stockSize];
+        this.stockInitialArray = new Tile[2];
     }
 
 
     // Metodo per aggiungere una tessera
     public void addTile(Tile tile, int row, int col) {
+
         if (row >= 0 && row < numRows && col >= 0 && col < numColumns && matrixBoard[row][col] == null) {
-            matrixBoard[row][col] = tile;
-            numberTile++;
+            if (row >= 4 && row <= 9 && col >= 3 && col <= 11) {
+
+                if ((row!=4 && col!=3) && (row!=4 && col!=4) && (row!=4 && col!=5) && (row!=4 && col!=6) && (row!=4 && col!=8) && (row!=4 && col!=9) && (row!=4 && col!=10) && (row!=4 && col!=11) && (row!=5 && col!=3) && (row!=5 && col!=4) && (row!=5 && col!=5) && (row!=5 && col!=9) && (row!=5 && col!=10) && (row!=5 && col!=11) && (row!=6 && col!=3) && (row!=6 && col!=4) && (row!=6 && col!=10) && (row!=6 && col!=11) && (row!=7 && col!=3) && (row!=7 && col!=4) && (row!=7 && col!=10) && (row!=7 && col!=11) && (row!=8 && col!=3) && (row!=8 && col!=11) && (row!=9 && col!=11) && (row!=9 && col!=3) && (row!=9 && col!=7))
+                {
+                    matrixBoard[row][col] = tile;
+                    numberTile++;
+                }
+                else
+                {
+                    System.out.println("You are not allowed to insert a cell in that position!!!!");
+                }
+            }
+            else
+            {
+                System.out.println("You are not allowed to insert a cell in that position!!!!");
+            }
         }
     }
+
+
 
     // Metodo per rimuovere una tessera
     public void removeTile(int row, int col) {
@@ -50,18 +67,6 @@ public class PlayerBoard {
         }
     }
 
-    // Metodo per contare i lati vuoti
-    public int countEmptySides() {
-        int count = 0;
-        for (int i = 0; i < numRows; i++) {
-            for (int j = 0; j < numColumns; j++) {
-                if (matrixBoard[i][j] == null) {
-                    count++;
-                }
-            }
-        }
-        return count;
-    }
 
     // Metodo per contare i connettori aperti
     public int countOpenConnectors() {
