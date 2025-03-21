@@ -314,6 +314,8 @@ public class PlayerBoard {
         int row;
         int col;
         int k;
+
+        //implementare se il carico non si può aggiungere
         while(load.size()>0){
             while( load.size()==size ){
                 for(row=0; row<numRows;row++){

@@ -1,8 +1,8 @@
 public class AbandonedShip extends Card{
     private int passengerLoss;
 
-    public AbandonedShip(Deck deck, int credit, int steps,  int passengerLoss) {
-        super(deck, credit, steps);
+    public AbandonedShip(Deck deck, int credit, int steps,  int passengerLoss, int cardLevel) {
+        super(deck, credit, steps, cardLevel );
         this.passengerLoss = passengerLoss;
     }
 

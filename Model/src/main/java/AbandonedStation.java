@@ -8,10 +8,11 @@ public class AbandonedStation extends Card {
 
 
     //costruttore
-    public AbandonedStation(Deck deck, int credit, int steps,  int requiredPassengers,  List<Integer> rewardLoad) {
-    super(deck, credit, steps);
+    public AbandonedStation(Deck deck, int credit, int steps, int cardLevel, int requiredPassengers,  List<Integer> rewardLoad) {
+    super(deck, credit, steps, cardLevel);
         this.requiredPassengers = requiredPassengers;
         this.rewardLoad =new ArrayList<>();
+
     }
 
     public void AbandonedStation(Storage storage, Gameboard gameBoard) {

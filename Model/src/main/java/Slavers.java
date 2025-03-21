@@ -6,8 +6,8 @@ public class Slavers extends Enemies {
     private int passengerLoss;
 
     //costruttore
-    public Slavers(Deck deck, int credit, int steps, int firePower, int passengerLoss){
-        super(deck, credit, steps, firePower);
+    public Slavers(Deck deck, int credit, int steps, int cardLevel, int firePower, int passengerLoss){
+        super(deck, credit, steps, cardLevel, firePower);
         this.passengerLoss = passengerLoss;
     }
     public void slavers(Gameboard gameBoard){

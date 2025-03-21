@@ -1,17 +1,32 @@
+import java.util.List;
+
 public class Card {
     private Deck deck;
     public int credit;
     public int steps;
+    public int cardLevel;
+
 
     // costruttore completo con parametri
-    public Card(Deck deck, int credit, int steps) {
+    public Card(Deck deck, int credit, int steps, int cardLevel) {
         this.deck = deck;
         this.credit = credit;
         this.steps = steps;
+        this.cardLevel = cardLevel;
+
+
+    }
+
+    public Card(List<Card> gameDeck) {
     }
 
 
     // metodi getter e setter
+    public int getLevel() {
+        return cardLevel;
+    }
+
+
     public Deck getDeck() {
         return deck;
     }
@@ -37,6 +52,8 @@ public class Card {
     }
 
 
+
+
     // metodo toString (facoltativo ma utile)
     @Override
     public String toString() {
@@ -44,6 +61,7 @@ public class Card {
                 "deck=" + deck +
                 ", credit=" + credit +
                 ", steps=" + steps +
+
                 '}';
     }
 }

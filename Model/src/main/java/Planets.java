@@ -6,8 +6,8 @@ public class Planets extends Card{
     private Map<Integer, List<Integer>> planetCargo; // Mappa: numero del pianeta → lista dei cargo
 
     //costruttore
-    public Planets(Deck deck, int credit, int steps, Map<Integer, List<Integer>> planetCargo){
-        super(deck, credit, steps);
+    public Planets(Deck deck, int credit, int steps, int cardLevel, Map<Integer, List<Integer>> planetCargo){
+        super(deck, credit, steps, cardLevel);
         planetCargo = new HashMap<Integer, List<Integer>>();
     }
 

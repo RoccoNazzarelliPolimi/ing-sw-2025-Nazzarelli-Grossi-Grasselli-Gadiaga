@@ -1,7 +1,7 @@
 public class Epidemic extends Card{
     // Costruttore che chiama il costruttore di Card
-    public Epidemic(Deck deck, int credit, int steps) {
-        super(deck, credit, steps); // Chiamata esplicita al costruttore di Card
+    public Epidemic(Deck deck, int credit, int steps, int cardLevel) {
+        super(deck, credit, steps, cardLevel); // Chiamata esplicita al costruttore di Card
     }
 
     public void epidemic(Gameboard gameBoard) {
