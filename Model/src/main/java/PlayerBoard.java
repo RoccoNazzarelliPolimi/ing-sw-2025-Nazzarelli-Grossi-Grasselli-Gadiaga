@@ -364,12 +364,142 @@ public class PlayerBoard {
         }
 
     }
+    private boolean hasShield(int direction) {
+        for (int i = 0; i < numRows; i++) {
+            for (int j = 0; j < numColumns; j++) {
+                Tile tile = matrixBoard[i][j];
+                if (tile instanceof Shield) {
+                    int[] defence = ((Shield) tile).getDefence();
+                    if (defence[direction]==1) {
+                        return true; //shield found
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     public void shoot (Map<Integer, Integer> shootsMap){
-        //implementare
+        Random random = new Random(); //dadi
+
+        for (Map.Entry<Integer, Integer> entry : shootsMap.entrySet()) {
+            int size = entry.getKey();         // 1 = small, 2 = big
+            int direction = entry.getValue();  // 1 = sx, 2 = up, 3 = dx, 4 = down
+            int dice = random.nextInt(12) + 1;     // Valore da 1 a 12
+
+            int row = -1;
+            int col = -1;
+
+            if (direction == 1) { // sinistra
+                row = dice;
+                for (col = 0; col < numColumns; col++) {
+                    if (matrixBoard[row][col] != null) {
+                        if (size == 1 && hasShield(0)) return; // protetta da sinistra
+                        deleteTile(matrixBoard[row][col], row, col);
+                        return;
+                    }
+                }
+            }else if (direction == 2) { // su
+                col = dice;
+                for (row = 0; row < numRows; row++) {
+                    if (matrixBoard[row][col] != null) {
+                        if (size == 1 && hasShield(1)) return; // protetta da sopra
+                        deleteTile(matrixBoard[row][col], row, col);
+                        return;
+                    }
+                }
+            } else if (direction == 3) { // destra
+                row = dice;
+                for (col = numColumns - 1; col >= 0; col--) {
+                    if (matrixBoard[row][col] != null) {
+                        if (size == 1 && hasShield(2)) return; // protetta da destra
+                        deleteTile(matrixBoard[row][col], row, col);
+                        return;
+                    }
+                }
+            } else if (direction == 4) { // giù
+                col = dice;
+                for (row = numRows - 1; row >= 0; row--) {
+                    if (matrixBoard[row][col] != null) {
+                        if (size == 1 && hasShield(3)) return; // protetta da sotto
+                        deleteTile(matrixBoard[row][col], row, col);
+                        return;
+                    }
+                }
+            }
+        }
+
+        checkBoardConnections(); // Ricontrolla la board dopo tutti i colpi
     }
+
     public void meteorShoot (int size, int direction, int dice){
-        //implementare
+        int row = -1;
+        int col = -1;
+
+        if (direction == 1) { // sinistra
+            row = dice;
+            for (col = 0; col < numColumns; col++) {
+                Tile tile = matrixBoard[row][col];
+                if (tile != null) {
+                    if (size == 1) {
+                        if (hasShield(0)) return; // scudo
+                        if (tile.getConnectors()[0] == 0) return; // rimbalza
+                    } else if (size == 2 && tile instanceof Drill) {
+                        if (((Drill) tile).getDirections()[0] == 1) return; // gli sparo
+                    }
+                    deleteTile(tile, row, col);
+                    break;
+                }
+            }
+        }else if (direction == 2) { // su
+            col = dice;
+            for (row = 0; row < numRows; row++) {
+                Tile tile = matrixBoard[row][col];
+                if (tile != null) {
+                    if (size == 1) {
+                        if (hasShield(1)) return;
+                        if (tile.getConnectors()[1] == 0) return;
+                    } else if (size == 2 && tile instanceof Drill) {
+                        if (((Drill) tile).getDirections()[1] == 1) return;
+                    }
+                    deleteTile(tile, row, col);
+                    break;
+                }
+            }
+        } else if (direction == 3) { // destra
+            row = dice;
+            for (col = numColumns - 1; col >= 0; col--) {
+                Tile tile = matrixBoard[row][col];
+                if (tile != null) {
+                    if (size == 1) {
+                        if (hasShield(2)) return;
+                        if (tile.getConnectors()[2] == 0) return;
+                    } else if (size == 2 && tile instanceof Drill) {
+                        if (((Drill) tile).getDirections()[2] == 1) return;
+                    }
+                    deleteTile(tile, row, col);
+                    break;
+                }
+            }
+        } else if (direction == 4) { // giù
+            col = dice;
+            for (row = numRows - 1; row >= 0; row--) {
+                Tile tile = matrixBoard[row][col];
+                if (tile != null) {
+                    if (size == 1) {
+                        if (hasShield(3)) return;
+                        if (tile.getConnectors()[3] == 0) return;
+                    } else if (size == 2 && tile instanceof Drill) {
+                        if (((Drill) tile).getDirections()[3] == 1) return;
+                    }
+                    deleteTile(tile, row, col);
+                    break;
+                }
+            }
+        }
+        checkBoardConnections(); // Ricontrolla
     }
+
     public Tile[] getStockInitialArray() {
         return stockInitialArray;
     }

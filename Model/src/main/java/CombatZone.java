@@ -12,41 +12,42 @@ public class CombatZone extends  Card{
 
         map1 = new HashMap<String, Map<Integer, String>>();
         map2 = new HashMap<String, Map<Integer, String>>();
-        map3 = new HashMap<String, Map<Integer, Integer> ();
+        map3 = new HashMap<String, Map<Integer, Integer>>();
+    }
 
-        public void combatZone (Gameboard gameBoard) {
-            String type = map1.keySet().iterator().next();
+    public void combatZone (Gameboard gameBoard) {
+        String type = map1.keySet().iterator().next();
 
-            Rocket rocketsArray[]=gameBoard.getRocketArray();
-            if (type == "Drill"){
+        Rocket rocketsArray[]=gameBoard.getRocketArray();
+        if (type == "Drill"){
 
-                double min = 0;
-                Rocket player = null;
-                for (Rocket rocket : rocketsArray){
+            double min = 0;
+            Rocket player = null;
+            for (Rocket rocket : rocketsArray){
 
-                    double currentfirePower = gameBoard.getRocketArray().getRocketPlayer().getMyBoard.checkFirePower();
+                double currentFirePower = rocket.getRocketPlayer().getMyBoard().checkFirePower();
 
-                    if(currentFirePower<min){
-                        min = currentfirePower;
-                        player = rocket;
-                    }
+                if(currentFirePower<min){
+                    min = currentFirePower;
+                    player = rocket;
                 }
             }
-            else if (type == "Heater"){
-            }
-            else if (type == "Passenger"){
-            }
-            for (Rocket rocket : rocketsArray){
-            }
-
-
-
+        }
+        else if (type == "Heater"){
+        }
+        else if (type == "Passenger"){
+        }
+        for (Rocket rocket : rocketsArray){
         }
 
 
 
-
     }
+
+
+
+
+
 
 
 
