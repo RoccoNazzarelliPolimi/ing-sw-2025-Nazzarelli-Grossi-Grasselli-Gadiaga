@@ -145,6 +145,7 @@ public class PlayerBoard {
                 }
             }
         }
+        return true;
     }
 
 
