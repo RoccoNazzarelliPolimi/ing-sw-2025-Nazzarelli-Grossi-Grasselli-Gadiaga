@@ -5,18 +5,18 @@ public class Game {
     private int clessidraRound;
     private int numPlayers;
     private Deck deckGame;
-    private Gameboard gameboard;
+    private Gameboard gameBoard;
 
     // Costruttore
     public Game(int numPlayers) {
         this.numPlayers = numPlayers;
         this.deckGame = new Deck();
-        this.gameboard = new Gameboard(deckGame);
+        this.gameBoard = new Gameboard(deckGame);
     }
 
     // Metodo per iniziare il gioco,
     public void startGame() {
-        gameboard.startHourglass();
+        gameBoard.startHourglass();
         System.out.println("Game starting");
     }
 
@@ -24,7 +24,7 @@ public class Game {
     // Metodo per impostare il mazzo di carte di gioco
     public Deck setDeck() {
         this.deckGame = new Deck();
-        deckGame.shuffleDeck();
+        deckGame.shuffleMainDeck();
         System.out.println("Deck created");
         return deckGame;
 
@@ -32,17 +32,25 @@ public class Game {
 
 
 
-    // Metodo per ottenere un giocatore (da implementare meglio a seconda della logica del gioco)
-    public Player getPlayer() {
-        // Logica per ottenere un giocatore
-        return null;
+    // Metodo per ottenere i giocatori
+    public Rocket[] getPlayers() {
+        return gameBoard.getRocketArray();
     }
 
     // Metodo per verificare il vincitore
-    public void checkWinner(){
-
-
-        // Logica per determinare il vincitore
+    //da implementare il caso in cui un giocatore viene eliminato (probabilmente non sarebbe più segnato sul rocketArray)
+    public Player checkWinner() {
+        Rocket rocketsArray[] = gameBoard.getRocketArray();
+        double max = 0;
+        Player winner = null;
+        for (Rocket rocket : rocketsArray) {
+            double current= rocket.getRocketPlayer().getScore();
+            if (current>max){
+                max=current;
+                winner = rocket.getRocketPlayer();
+            }
+        }
+        return winner;
     }
 
     // Metodo per pescare una carta dal mazzo
