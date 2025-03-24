@@ -54,7 +54,7 @@ public class Deck {
 
                 //rendo il quarto mazzo inaccessibile per la prima parte del gioco
                 for (Card card : Deck4) {
-                        card.accessible = false;
+                        card.isAccessible = false;
                 }
 
         }

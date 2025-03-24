@@ -5,6 +5,7 @@ public class Card {
     public int credit;
     public int steps;
     public int cardLevel;
+    public boolean isAccessible;
 
 
     // costruttore completo con parametri
