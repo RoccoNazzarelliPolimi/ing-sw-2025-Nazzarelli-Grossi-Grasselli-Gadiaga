@@ -7,7 +7,7 @@ import java.util.Map;
 public class CombatZone extends  Card{
     private List<Action> actions;
 
-    public CombatZone(Deck deck, int credit, int steps) { //aggiungere le map
+    public CombatZone(Deck deck, int credit, int steps, List<Action>  actions) { //aggiungere le map
         super(deck, credit, steps);
         actions = new ArrayList<>();
     }

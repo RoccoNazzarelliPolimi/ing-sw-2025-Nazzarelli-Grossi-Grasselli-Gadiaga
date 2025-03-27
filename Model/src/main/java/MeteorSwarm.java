@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -6,9 +7,9 @@ public class MeteorSwarm extends Card {
     private List<Pair> meteoriteMap; // size(1 small, 2 big), direction (1sx, 2up, 3dx, 4down)
 
     // Costruttore vuoto (aggiungilo solo se necessario)
-    public MeteorSwarm(Deck deck, int credit, int steps, int cardLevel, Map<Integer, Integer> meteoriteMap ) {
+    public MeteorSwarm(Deck deck, int credit, int steps, int cardLevel, List<Pair> meteoriteMap ) {
         super(deck, credit, steps);
-        meteoriteMap = new HashMap<Integer, Integer>();
+        meteoriteMap = new ArrayList<>();
     }
 
     //
