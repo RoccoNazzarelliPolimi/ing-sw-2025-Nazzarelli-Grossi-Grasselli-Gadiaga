@@ -11,7 +11,7 @@ public class Storage extends Tile {
         this.capacity = capacity;
         this.numCargo = 0;
         this.canRed = canRed;
-        this.cargoValues = new ArrayList<>(); //max 3 cargo
+        this.cargoValues = cargoValues; //max 3 cargo
     }
 
     //method that checks the capacity of the storage unit left

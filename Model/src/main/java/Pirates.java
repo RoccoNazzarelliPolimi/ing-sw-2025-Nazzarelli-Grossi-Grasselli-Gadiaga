@@ -7,9 +7,9 @@ public class Pirates extends Enemies{
     private List<Pair> shootsMap; //size(1 small, 2 big), direction (1sx, 2up, 3dx, 4down)
 
     //costruttore
-    public Pirates(Deck deck, int credit, int steps, int cardLevel, int firePower,Map<Integer, Integer> shootsMap){
+    public Pirates(Deck deck, int credit, int steps, int cardLevel, int firePower,List<Pair>  shootsMap){
         super(deck, credit, steps, cardLevel, firePower);
-        this.shootsMap = new ArrayList<>();
+        this.shootsMap = shootsMap;
     }
 
     public void pirates(Gameboard gameBoard){

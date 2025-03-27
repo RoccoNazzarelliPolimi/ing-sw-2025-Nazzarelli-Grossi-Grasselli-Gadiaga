@@ -8,10 +8,10 @@ public class Game {
     private Gameboard gameBoard;
 
     // Costruttore
-    public Game(int numPlayers) {
+    public Game(int numPlayers, Deck deckGame, Gameboard gameBoard) {
         this.numPlayers = numPlayers;
-        this.deckGame = new Deck();
-        this.gameBoard = new Gameboard(deckGame);
+        this.deckGame = deckGame;
+        this.gameBoard = gameBoard;
     }
 
     // Metodo per iniziare il gioco,

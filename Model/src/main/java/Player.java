@@ -8,13 +8,11 @@ public class Player {
 
 
     public Player(String nickname, Double score, String color, PlayerBoard myBoard, Rocket myRocket) {
-
         this.nickname = nickname;
         this.score = 0;
         this.color = color;
         this.myBoard = myBoard;
         this.myRocket = myRocket;
-
     }
 
     public String getNickname(){

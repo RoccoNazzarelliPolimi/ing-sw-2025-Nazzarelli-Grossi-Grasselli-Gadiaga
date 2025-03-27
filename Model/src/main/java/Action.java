@@ -8,11 +8,11 @@ public class Action {
     private int penaltyValue; // num of object to lose
     private List<Pair> shootsMap; //size(1 small, 2 big), direction (1sx, 2up, 3dx, 4down)
 
-    public Action(String targetCondition, String penaltyType, int penaltyValue, Map<Integer, Integer> shootsMap) {
+    public Action(String targetCondition, String penaltyType, int penaltyValue, List<Pair> shootsMap) {
         this.targetCondition = targetCondition;
         this.penaltyType = penaltyType; //null se serve la mappa
         this.penaltyValue = penaltyValue; //0 se serve la mappa
-        this.shootsMap = new ArrayList<>(); // null quando vengono utilizzate penaltyType e Value
+        this.shootsMap = shootsMap; // null quando vengono utilizzate penaltyType e Value
     }
 
     public String getTargetCondition() {

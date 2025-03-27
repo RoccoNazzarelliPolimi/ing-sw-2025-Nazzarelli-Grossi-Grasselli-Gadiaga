@@ -10,6 +10,7 @@ public class Slavers extends Enemies {
         super(deck, credit, steps, cardLevel, firePower);
         this.passengerLoss = passengerLoss;
     }
+
     public void slavers(Gameboard gameBoard){
         Rocket rocketsArray[]=gameBoard.getRocketArray();
         for (Rocket rocket : rocketsArray) {

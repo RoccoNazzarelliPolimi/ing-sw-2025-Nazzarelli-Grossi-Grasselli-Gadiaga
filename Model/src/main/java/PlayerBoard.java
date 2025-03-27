@@ -425,47 +425,57 @@ public class PlayerBoard {
             int size = pair.first;         // 1 = small, 2 = big
             int direction = pair.second;  // 1 = sx, 2 = up, 3 = dx, 4 = down
             int dice = random.nextInt(12) + 1;     // Valore da 1 a 12
+            System.out.println("Dice: " + dice + ", Pair: "+ size + ","+ direction);
 
             int row = -1;
             int col = -1;
 
             if (direction == 1) { // sinistra
-                row = dice;
-                for (col = 0; col < numColumns; col++) {
-                    if (matrixBoard[row][col] != null) {
-                        if (size == 1 && hasShield(0)) return; // protetta da sinistra
-                        deleteTile(matrixBoard[row][col], row, col);
-                        return;
+                if (dice>3 && dice<10){ // se no so già che non colpisce niente
+                    row = dice;
+                    for (col = 0; col < numColumns; col++) {
+                        if (matrixBoard[row][col] != null) {
+                            if (size == 1 && hasShield(0)) return; // protetta da sinistra
+                            System.out.println("Shild covered from sx");
+                            deleteTile(matrixBoard[row][col], row, col);
+                        }
                     }
                 }
             }else if (direction == 2) { // su
-                col = dice;
-                for (row = 0; row < numRows; row++) {
-                    if (matrixBoard[row][col] != null) {
-                        if (size == 1 && hasShield(1)) return; // protetta da sopra
-                        deleteTile(matrixBoard[row][col], row, col);
-                        return;
+                if (dice>3 && dice<11){
+                    col = dice;
+                    for (row = 0; row < numRows; row++) {
+                        if (matrixBoard[row][col] != null) {
+                            if (size == 1 && hasShield(1)) return; // protetta da sopra
+                            System.out.println("Shild covered from up");
+                            deleteTile(matrixBoard[row][col], row, col);
+                        }
                     }
                 }
             } else if (direction == 3) { // destra
-                row = dice;
-                for (col = numColumns - 1; col >= 0; col--) {
-                    if (matrixBoard[row][col] != null) {
-                        if (size == 1 && hasShield(2)) return; // protetta da destra
-                        deleteTile(matrixBoard[row][col], row, col);
-                        return;
+                if (dice>3 && dice<10){
+                    row = dice;
+                    for (col = numColumns - 1; col >= 0; col--) {
+                        if (matrixBoard[row][col] != null) {
+                            if (size == 1 && hasShield(2)) return; // protetta da destra
+                            System.out.println("Shild covered from dx");
+                            deleteTile(matrixBoard[row][col], row, col);
+                        }
                     }
                 }
             } else if (direction == 4) { // giù
-                col = dice;
-                for (row = numRows - 1; row >= 0; row--) {
-                    if (matrixBoard[row][col] != null) {
-                        if (size == 1 && hasShield(3)) return; // protetta da sotto
-                        deleteTile(matrixBoard[row][col], row, col);
-                        return;
+                if (dice>3 && dice<11){
+                    col = dice;
+                    for (row = numRows - 1; row >= 0; row--) {
+                        if (matrixBoard[row][col] != null) {
+                            if (size == 1 && hasShield(3)) return; // protetta da sotto
+                            System.out.println("Shild covered from down");
+                            deleteTile(matrixBoard[row][col], row, col);
+                        }
                     }
                 }
             }
+            System.out.println("No tiles shooted");
         }
 
         checkBoardConnections(); // Ricontrolla la board dopo tutti i colpi
@@ -481,8 +491,8 @@ public class PlayerBoard {
                 Tile tile = matrixBoard[row][col];
                 if (tile != null) {
                     if (size == 1) {
-                        if (hasShield(0)) return; // scudo
                         if (tile.getConnectors()[0] == 0) return; // rimbalza
+                        if (hasShield(0)) return; // scudo
                     } else if (size == 2 && tile instanceof Drill) {
                         if (((Drill) tile).getDirections()[0] == 1) return; // gli sparo
                     }
@@ -495,13 +505,24 @@ public class PlayerBoard {
             for (row = 0; row < numRows; row++) {
                 Tile tile = matrixBoard[row][col];
                 if (tile != null) {
+                    System.out.println("Connector in up: "+ tile.getConnectors()[1]);
                     if (size == 1) {
-                        if (hasShield(1)) return;
-                        if (tile.getConnectors()[1] == 0) return;
+                        if (tile.getConnectors()[1] == 0){
+                            System.out.println("bounces off");
+                            return;
+                        }
+                        if (hasShield(1)) {
+                            System.out.println("there is a shield");
+                            return;
+                        }
                     } else if (size == 2 && tile instanceof Drill) {
-                        if (((Drill) tile).getDirections()[1] == 1) return;
+                        if (((Drill) tile).getDirections()[1] == 1){
+                            System.out.println("shooted down");
+                            return;
+                        }
                     }
                     deleteTile(tile, row, col);
+                    System.out.println("tile was hit");
                     break;
                 }
             }
@@ -511,8 +532,8 @@ public class PlayerBoard {
                 Tile tile = matrixBoard[row][col];
                 if (tile != null) {
                     if (size == 1) {
-                        if (hasShield(2)) return;
                         if (tile.getConnectors()[2] == 0) return;
+                        if (hasShield(2)) return;
                     } else if (size == 2 && tile instanceof Drill) {
                         if (((Drill) tile).getDirections()[2] == 1) return;
                     }
@@ -526,8 +547,8 @@ public class PlayerBoard {
                 Tile tile = matrixBoard[row][col];
                 if (tile != null) {
                     if (size == 1) {
-                        if (hasShield(3)) return;
                         if (tile.getConnectors()[3] == 0) return;
+                        if (hasShield(3)) return;
                     } else if (size == 2 && tile instanceof Drill) {
                         if (((Drill) tile).getDirections()[3] == 1) return;
                     }
