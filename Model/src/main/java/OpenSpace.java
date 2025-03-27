@@ -1,7 +1,7 @@
 public class OpenSpace extends Card{
     // Costruttore che chiama il costruttore di Card
     public OpenSpace(Deck deck, int credit, int steps, int cardLevel) {
-        super(deck, credit, steps, cardLevel); // Chiamata esplicita al costruttore di Card
+        super(deck, credit, steps); // Chiamata esplicita al costruttore di Card
     }
 
     public void openSpace(Gameboard gameBoard) {

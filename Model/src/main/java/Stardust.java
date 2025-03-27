@@ -1,7 +1,7 @@
 public class Stardust extends Card {
     // Costruttore che chiama il costruttore di Card
     public Stardust(Deck deck, int credit, int steps, int cardLevel) {
-        super(deck, credit, steps, cardLevel); // Chiamata esplicita al costruttore di Card
+        super(deck, credit, steps); // Chiamata esplicita al costruttore di Card
     }
 
     public void stardust(Gameboard gameBoard) {
@@ -11,4 +11,5 @@ public class Stardust extends Card {
             gameBoard.movePlayer(rocket, steps);
         }
     }
+
 }

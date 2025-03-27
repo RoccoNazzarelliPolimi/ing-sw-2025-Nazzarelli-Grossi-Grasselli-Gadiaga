@@ -7,7 +7,7 @@ public class Planets extends Card{
 
     //costruttore
     public Planets(Deck deck, int credit, int steps, int cardLevel, Map<Integer, List<Integer>> planetCargo){
-        super(deck, credit, steps, cardLevel);
+        super(deck, credit, steps);
         planetCargo = new HashMap<Integer, List<Integer>>();
     }
 

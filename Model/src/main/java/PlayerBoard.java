@@ -35,17 +35,34 @@ public class PlayerBoard {
 
     // Metodo per aggiungere una tessera
     public void addTile(Tile tile, int row, int col) {
+
+        //Set the row and column of the tile as the ones in input
+        tile.setRow(row);
+        tile.setCol(col);
+
+        Set<String> posVietate = new HashSet<>(List.of(
+                "4,3", "4,4", "4,5", "4,6", "4,8", "4,9", "4,10", "4,11",
+                "5,3", "5,4", "5,5", "5,9", "5,10", "5,11",
+                "6,3", "6,4", "6,10", "6,11",
+                "7,3", "7,4", "7,10", "7,11",
+                "8,3", "8,11",
+                "9,3", "9,11", "9,7"
+        ));
+
+        String pos = row + "," + col;
+
         if (row >= 0 && row < numRows && col >= 0 && col < numColumns && matrixBoard[row][col] == null) {
             if (row >= 4 && row <= 9 && col >= 3 && col <= 11) {
-                if ((row!=4 && col!=3) && (row!=4 && col!=4) && (row!=4 && col!=5) && (row!=4 && col!=6) && (row!=4 && col!=8) && (row!=4 && col!=9) && (row!=4 && col!=10) && (row!=4 && col!=11) && (row!=5 && col!=3) && (row!=5 && col!=4) && (row!=5 && col!=5) && (row!=5 && col!=9) && (row!=5 && col!=10) && (row!=5 && col!=11) && (row!=6 && col!=3) && (row!=6 && col!=4) && (row!=6 && col!=10) && (row!=6 && col!=11) && (row!=7 && col!=3) && (row!=7 && col!=4) && (row!=7 && col!=10) && (row!=7 && col!=11) && (row!=8 && col!=3) && (row!=8 && col!=11) && (row!=9 && col!=11) && (row!=9 && col!=3) && (row!=9 && col!=7)) {
-                    matrixBoard[row][col] = tile;
+                if (!posVietate.contains(pos))
+                {matrixBoard[row][col] = tile;
                     numberTile++;
+                    System.out.println("Tile " + tile + " was set in position: " + row + " and " + col);
                 }
                 else {
-                    System.out.println("You are not allowed to insert a cell in that position!!!!");
+                    System.out.println("You are not allowed to insert a cell in that position 2 if!!!!");
                 }
             } else {
-                System.out.println("You are not allowed to insert a cell in that position!!!!");
+                System.out.println("You are not allowed to insert a cell in that position 1 if!!!!");
             }
         }
     }

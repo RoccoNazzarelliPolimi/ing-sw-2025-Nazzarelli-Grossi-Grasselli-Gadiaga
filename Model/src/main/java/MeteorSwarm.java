@@ -6,7 +6,7 @@ public class MeteorSwarm extends Card {
 
     // Costruttore vuoto (aggiungilo solo se necessario)
     public MeteorSwarm(Deck deck, int credit, int steps, int cardLevel, Map<Integer, Integer> meteoriteMap ) {
-        super(deck, credit, steps, cardLevel);
+        super(deck, credit, steps);
         meteoriteMap = new HashMap<Integer, Integer>();
     }
 

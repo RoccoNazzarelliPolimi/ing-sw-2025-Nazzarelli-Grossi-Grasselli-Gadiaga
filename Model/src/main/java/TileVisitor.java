@@ -1,4 +1,6 @@
 public interface TileVisitor {
+    void visit(Shield shield);
+
     void visit(Drill drill);
     void visit(HousingUnit housingUnit);
     void visit(Heater heater);

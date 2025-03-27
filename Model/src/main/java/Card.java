@@ -21,6 +21,9 @@ public class Card {
     public Card(List<Card> gameDeck) {
     }
 
+    public Card(Deck deck, int credit, int steps) {
+    }
+
 
     // metodi getter e setter
     public int getLevel() {

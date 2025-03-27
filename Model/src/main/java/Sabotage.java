@@ -1,7 +1,7 @@
 public class Sabotage extends Card{
     // Constructor
     public Sabotage(Deck deck, int credit, int steps, int cardLevel) {
-        super(deck, credit, steps, cardLevel); // Chiamata esplicita al costruttore di Card
+        super(deck, credit, steps); // Chiamata esplicita al costruttore di Card
     }
     public void sabotage(Gameboard gameBoard) {
         Rocket rocketsArray[] = gameBoard.getRocketArray();

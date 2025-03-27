@@ -8,8 +8,17 @@ public class TileRemovalVisitor implements TileVisitor {
     }
 
     @Override
+    public void visit(Pipe pipe) {
+    }
+
+    @Override
+    public void visit(Shield shield) {
+        playerBoard.askcol();
+    }
+
+
+    @Override
     public void visit(Drill drill) {
-        playerBoard.decreaseFirePower(1);
     }
 
     @Override
@@ -30,4 +39,17 @@ public class TileRemovalVisitor implements TileVisitor {
     public void visit(PowerCenter powerCenter) {
         playerBoard.decreaseBatteries(powerCenter.checkBattery());
     }
+
+    @Override
+    public void visit(AlienAddOn alienAddOn) {
+    }
+
+    @Override
+    public void visit(CentralHousingUnit centralHousingUnit) {
+    }
+
+    @Override
+    public void visit(Storage storage) {
+    }
+
 }
