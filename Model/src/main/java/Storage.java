@@ -48,8 +48,9 @@ public class Storage extends Tile {
 
         // Controllo se c'è spazio disponibile
         if (checkCapacity() > 0) {
-            cargoValues.add(type);
+            cargoValues.add(type); //aggiungo alla lista
             numCargo++;
+            System.out.println("Cargo " + type);
             return true;
         } else {
             System.out.println("Error: Not enough space to add cargo.");

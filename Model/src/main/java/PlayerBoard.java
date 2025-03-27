@@ -333,34 +333,55 @@ public class PlayerBoard {
         int col;
         int k;
 
-        //implementare se il carico non si può aggiungere
-        while(load.size()>0){
-            while( load.size()==size ){
-                for(row=0; row<numRows;row++){
-                    for(col=0; col<numColumns; col++){
-                        Tile tile = matrixBoard[row][col];
-                        if(tile instanceof Storage){
-                            int currentCapacity=((Storage)tile).checkCapacity();
-                            if(currentCapacity>0){
-                                if(((Storage)tile).addCargo(load.get(0))){
-                                    load.remove(0);
-                                }
+        while (!load.isEmpty()) {
+            boolean added = false;
+            int cargo = load.get(0); // sempre il primo
+
+            for (row = 0; row < numRows; row++) {
+                for (col = 0; col < numColumns; col++) {
+                    Tile tile = matrixBoard[row][col];
+
+                    if (tile instanceof Storage) {
+                        Storage storage = (Storage) tile;
+
+                        // Se c'è spazio e si può aggiungere
+                        if (storage.checkCapacity()> 0){
+                            System.out.println("capacity: " + storage.checkCapacity());
+                            if(storage.addCargo(cargo)) {
+                                System.out.println("added in " + row + " " + col);
+                                load.remove(0);
+                                added = true;
+                                break;
                             }
-                            else{
-                                Collections.sort(((Storage)tile).getCargoValues());
-                                if(((Storage)tile).getCargoValues().get(0)<load.get(0)) {
-                                    ((Storage)tile).removeCargo(((Storage)tile).getCargoValues().get(0));
-                                    ((Storage)tile).addCargo(load.get(0));
+                        }
+
+                        // Altrimenti: valutiamo se sostituire un cargo meno prezioso
+                        List<Integer> values = storage.getCargoValues();
+                        if (!values.isEmpty()) {
+                            Collections.sort(values);
+                            if (values.get(0) < cargo) {
+                                storage.removeCargo(values.get(0));
+                                if(storage.addCargo(cargo)) {
+                                    System.out.println("replaced in " + row + " " + col);
                                     load.remove(0);
+                                    added = true;
+                                    break;
                                 }
+
                             }
                         }
                     }
                 }
+                if (added) break; // esci dai due for se è stato inserito
+            }
+
+            if (!added) {
+                System.out.println("Cargo " + cargo + " scartato.");
+                load.remove(0); // non è stato inserito, rimuovilo lo stesso
             }
         }
-
     }
+
     public void removeStorage(int n){
         int row;
         int col;
