@@ -35,4 +35,8 @@ public class Player {
     public Rocket getMyRocket(){
         return myRocket;
     }
+    public void setMyBoard(PlayerBoard myBoard){
+        this.myBoard = myBoard;
+    }
+
 }
