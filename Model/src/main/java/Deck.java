@@ -4,74 +4,107 @@ import java.util.List;
 import java.util.Random;
 
 public class Deck {
-        private Card [] Deck1;
-        private Card [] Deck2;
-        private Card [] Deck3;
-        private Card [] Deck4;
-        private Card [] mainDeck; //mazzo generale da 40 carte
+        private List<Card> deck1;
+        private List<Card> deck2;
+        private List<Card> deck3;
+        private List<Card> deck4;
+        private List <Card> mainDeck; //mazzo generale da 40 carte
         private List <Card>  gameDeck; //mazzo di gioco da 12 carte
         private Random random;
 
         public Deck (){
-                this.mainDeck = new Card[40];
-                this.Deck1 = new Card[3];
-                this.Deck2 = new Card[3];
-                this.Deck3 = new Card[3];
-                this.Deck4 = new Card[3];
+                this.mainDeck = new ArrayList<>();
+                this.deck1 = new ArrayList<>();
+                this.deck2 = new ArrayList<>();
+                this.deck3 = new ArrayList<>();
+                this.deck4 = new ArrayList<>();
                 this.gameDeck = new ArrayList<>();
                 this.random = new Random();
         }
 
-        // Metodo per mischiare il deck di gioco da 40 carte
+        //metodo che popolerà il mainDeck (lo farà il controller)
+        public void initializeMainDeck(){
+
+                // Il controller chiamerà deck.addToMainDeck per popolare il mazzo
+        }
+
+        //aggiunge le 40 carte avventura al mainDeck
+        public void addToMainDeck(Card card){
+                mainDeck.add(card);
+        }
+
+        // Metodo per mischiare il mainDeck
         public void shuffleMainDeck() {
-                Collections.shuffle(gameDeck, random);
+                Collections.shuffle(mainDeck, random);
         }
 
 
-
-        //metodo per creare 4 subdeck
+        //metodo per creare 4 subdeck dalle 12 carte prelevate da MainDeck
         public void createSubDecks() {
+                List<Card> level1Cards = new ArrayList<>();
+                List<Card> level2Cards = new ArrayList<>();
+                //seleziona 8 carte di livello II e 4 di livello 1 da MainDeck
+                for (Card c : mainDeck) {
+                        if (c.getLevel() == 1 && level1Cards.size() < 4) {
+                                level1Cards.add(c);
+                        } else if (c.getLevel() == 2 && level2Cards.size() < 8) {
+                                level2Cards.add(c);
+                        }
+
+                        if (level1Cards.size() == 4 && level2Cards.size() == 8 ) {
+                                break;
+                        }
+
+                        //unisco e le mischio
+                        List<Card> twelveCards = new ArrayList<>();
+                        twelveCards.addAll(level1Cards);
+                        twelveCards.addAll(level2Cards);
+                        Collections.shuffle(twelveCards, random);
 
                 List<Card> tempDeck = new ArrayList<> ();
-               // prendo 12 carte del main deck e le mischio
-                for (int i=0; i < 12; i++){
-                        tempDeck.add(mainDeck[i]);
+
+                // Divido in 4 subdecks con 2 carte di livello 2 + 1 di livello 1
+                List<List<Card>> subDecks = List.of(deck1, deck2, deck3, deck4);
+                for (List<Card> subDeck : subDecks) {
+                        int level1 = 0;
+                        int level2 = 0;
+
+                        while (subDeck.size() < 3 && !twelveCards.isEmpty()) {
+                                Card card = twelveCards.remove(0);
+                                if (c.getLevel() == 1 && level1 < 1 ) {
+                                        subDeck.add(c);
+                                        level1++;
+                                } else if (c.getLevel() == 2 && level2 < 1 ) {
+                                        subDeck.add(c);
+                                        level2++;
+                                } else {
+                                        twelveCards.add(card); //altrimenti
+                                }
+
+
+                        }
+                }
+                for (Card card : deck4) {
+                        card.setAccessible(false);
                 }
 
-                //popolo i 4 mazzi
-                for (int i = 0; i < 3; i++) {
-                        Deck1[i] = tempDeck.remove(0);
-                }
-                for (int i = 0; i < 3; i++) {
-                        Deck2[i] = tempDeck.remove(0);
-                }
-                for (int i = 0; i < 3; i++) {
-                        Deck3[i] = tempDeck.remove(0);
-                }
-                for (int i = 0; i < 3; i++) {
-                        Deck4[i] = tempDeck.remove(0);
                 }
 
-                //rendo il quarto mazzo inaccessibile per la prima parte del gioco
-                for (Card card : Deck4) {
-                        card.isAccessible = false;
-                }
 
         }
 
-        //metodo per unire i 4 mazzi nel gameDeck da 12 carte e per mischiarlo con la giusta procedura
-        public void mergeDecks(){
-                //aggiungo carte nel mazzo di gioco
-                Collections.addAll(gameDeck, Deck1);
-                Collections.addAll(gameDeck, Deck2);
-                Collections.addAll(gameDeck, Deck3);
-                Collections.addAll(gameDeck, Deck4);
+        //unisco i subdecks e mischio fino a che la prima carta è livello II
+        public void mergeSubDecks() {
+                gameDeck.clear();
+                gameDeck.addAll(deck1);
+                gameDeck.addAll(deck2);
+                gameDeck.addAll(deck3);
+                gameDeck.addAll(deck4);
 
-                //Mischio il mazzo di gioco fino a quando la prima carta è di livello II (dalle regole del gioco)
                 do {
                         Collections.shuffle(gameDeck, random);
+                } while (!gameDeck.isEmpty() && gameDeck.get(0).getLevel() != 2);
 
-                } while (gameDeck.get(0).getLevel() != 2);
 
         }
 
@@ -83,15 +116,17 @@ public class Deck {
                 if (this.gameDeck.isEmpty()) {
                         System.out.println("Il deck è vuoto! Non posso pescare altre carte.");
                         return null;
+                } else {
+                       // rimuove e restituisce la prima carta
+                        System.out.println("Carta in gioco: " + this.gameDeck.get(0));
+
                 }
-                return this.gameDeck.remove(0);  // rimuove e restituisce la prima carta
+                return this.gameDeck.remove(0);
         }
 
-        // forse inutile non so
-        public void setDeck() {
-                for (int i = 0; i < mainDeck.length; i++) {
-                        mainDeck[i] = new Card(gameDeck); // Supponendo che Card abbia un costruttore che accetta un numero
-                }
+        //utilizzato per il testing di deck
+        public void addCard() {
+
         }
 
 

@@ -14,6 +14,7 @@ public class Card {
         this.credit = credit;
         this.steps = steps;
         this.cardLevel = cardLevel;
+        this.isAccessible = true;
 
 
     }
@@ -53,6 +54,15 @@ public class Card {
 
     public void setSteps(int steps) {
         this.steps = steps;
+    }
+
+    public boolean isAccessible(){
+        return isAccessible;
+
+    }
+
+    public void setAccessible(boolean accessible) {
+        this.isAccessible = accessible;
     }
 
 
