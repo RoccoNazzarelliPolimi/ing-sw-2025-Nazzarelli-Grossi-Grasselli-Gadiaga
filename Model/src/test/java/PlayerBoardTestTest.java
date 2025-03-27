@@ -8,7 +8,7 @@ public class PlayerBoardTestTest extends TestCase {
      * Crea un giocatore con un razzo, una plancia 9x11 e una tessera Pipe,
      * poi tenta di aggiungere la tessera nella posizione (1,1) della plancia.
      */
-
+    int a =1;
     public void testAddTile() {
         Rocket rocket = new Rocket(null, 5, 1, 0);
         Player player = new Player("Rocky", 0.0, "green", null, rocket);
