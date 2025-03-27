@@ -55,6 +55,14 @@ public class Card {
         this.steps = steps;
     }
 
+    public boolean isAccessible() {
+        return isAccessible;
+    }
+
+    public void setAccessible(boolean accessible) {
+        this.isAccessible = accessible;
+    }
+
 
 
 

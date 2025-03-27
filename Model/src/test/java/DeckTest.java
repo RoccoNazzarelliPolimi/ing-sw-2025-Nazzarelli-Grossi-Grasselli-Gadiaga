@@ -52,7 +52,7 @@ public class DeckTest {
         Deck deck = new Deck();
         Card carta1 = new Card(null,1, 2, 2);
         Card carta2 = new Card(null,3, 0, 1);
-        deck.addCard(carta1, carta2);
+
         deck.drawCard();
 
     }
