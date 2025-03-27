@@ -53,7 +53,7 @@ public class CombatZone extends  Card{
             //penalty
             String penaltyType = action.getPenaltyType();// "days", "passenger", "cargo"
             int penaltyValue = action.getPenaltyValue();
-            Map<Integer, Integer> shootsMap= action.getShootsMap();//size(1 small, 2 big), direction (1sx, 2up, 3dx, 4down)
+            List<Pair> shootsMap= action.getShootsMap();//size(1 small, 2 big), direction (1sx, 2up, 3dx, 4down)
             if (penaltyType != null && shootsMap == null) { //action 1 or 2
                 if (penaltyType == "days"){
                     gameBoard.movePlayer(loser, penaltyValue);

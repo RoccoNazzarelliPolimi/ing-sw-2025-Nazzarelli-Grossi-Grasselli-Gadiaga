@@ -1,8 +1,9 @@
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MeteorSwarm extends Card {
-    private Map<Integer, Integer> meteoriteMap; // size(1 small, 2 big), direction (1sx, 2up, 3dx, 4down)
+    private List<Pair> meteoriteMap; // size(1 small, 2 big), direction (1sx, 2up, 3dx, 4down)
 
     // Costruttore vuoto (aggiungilo solo se necessario)
     public MeteorSwarm(Deck deck, int credit, int steps, int cardLevel, Map<Integer, Integer> meteoriteMap ) {
@@ -13,9 +14,9 @@ public class MeteorSwarm extends Card {
     //
     public void meteorSwarm (Gameboard gameBoard) {
         Rocket rocketsArray[]=gameBoard.getRocketArray();
-        for (Map.Entry<Integer, Integer> entry : meteoriteMap.entrySet()) {
-            Integer size = entry.getKey();
-            Integer direction = entry.getValue();
+        for (Pair pair : meteoriteMap) {
+            Integer size = pair.first;
+            Integer direction = pair.second;
             //roll dice
 
             int dice = 6; //esempio

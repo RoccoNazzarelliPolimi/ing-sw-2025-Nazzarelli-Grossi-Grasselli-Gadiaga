@@ -418,12 +418,12 @@ public class PlayerBoard {
         return false;
     }
 
-    public void shoot (Map<Integer, Integer> shootsMap){
+    public void shoot (List<Pair> shootsMap){
         Random random = new Random(); //dadi
 
-        for (Map.Entry<Integer, Integer> entry : shootsMap.entrySet()) {
-            int size = entry.getKey();         // 1 = small, 2 = big
-            int direction = entry.getValue();  // 1 = sx, 2 = up, 3 = dx, 4 = down
+        for (Pair pair : shootsMap) {
+            int size = pair.first;         // 1 = small, 2 = big
+            int direction = pair.second;  // 1 = sx, 2 = up, 3 = dx, 4 = down
             int dice = random.nextInt(12) + 1;     // Valore da 1 a 12
 
             int row = -1;
