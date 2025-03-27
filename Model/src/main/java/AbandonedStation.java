@@ -11,8 +11,7 @@ public class AbandonedStation extends Card {
     public AbandonedStation(Deck deck, int credit, int steps, int cardLevel, int requiredPassengers,  List<Integer> rewardLoad) {
     super(deck, credit, steps);
         this.requiredPassengers = requiredPassengers;
-        this.rewardLoad =new ArrayList<>();
-
+        this.rewardLoad =rewardLoad;
     }
 
     public void AbandonedStation(Storage storage, Gameboard gameBoard) {

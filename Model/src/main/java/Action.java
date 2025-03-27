@@ -12,7 +12,7 @@ public class Action {
         this.targetCondition = targetCondition;
         this.penaltyType = penaltyType; //null se serve la mappa
         this.penaltyValue = penaltyValue; //0 se serve la mappa
-        this.shootsMap = new ArrayList<>(); // null quando vengono utilizzate penaltyType e Value
+        this.shootsMap = shootsMap; // null quando vengono utilizzate penaltyType e Value
     }
 
     public String getTargetCondition() {

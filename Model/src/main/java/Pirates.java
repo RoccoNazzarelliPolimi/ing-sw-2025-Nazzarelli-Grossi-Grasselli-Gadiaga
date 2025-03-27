@@ -9,7 +9,7 @@ public class Pirates extends Enemies{
     //costruttore
     public Pirates(Deck deck, int credit, int steps, int cardLevel, int firePower,List<Pair>  shootsMap){
         super(deck, credit, steps, cardLevel, firePower);
-        this.shootsMap = new ArrayList<>();
+        this.shootsMap = shootsMap;
     }
 
     public void pirates(Gameboard gameBoard){

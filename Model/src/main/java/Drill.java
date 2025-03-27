@@ -4,11 +4,11 @@ public class Drill extends Tile {
     private double value; //0,5 o 1 o 2
 
     // Costruttore
-    public Drill(int drillType, int[] directions, int[] connectors, int row, int column, PlayerBoard playerBoard) {
+    public Drill(int[] connectors, int row, int column, PlayerBoard playerBoard, int drillType, int value, int[] directions) {
         super(connectors, row, column, playerBoard);
-        this.directions = new int[4];
+        this.directions = directions;
         this.drillType = drillType;
-        this.value = 0;
+        this.value = value;
     }
 
     public void setValue(){

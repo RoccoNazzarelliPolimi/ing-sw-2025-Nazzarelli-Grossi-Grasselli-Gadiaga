@@ -14,8 +14,6 @@ public class Card {
         this.credit = credit;
         this.steps = steps;
         this.cardLevel = cardLevel;
-
-
     }
 
     public Card(List<Card> gameDeck) {

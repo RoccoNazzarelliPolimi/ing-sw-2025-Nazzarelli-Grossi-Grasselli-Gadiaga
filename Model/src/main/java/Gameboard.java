@@ -3,8 +3,8 @@ import java.util.ArrayList;
 
 
 public class Gameboard {
-    private String[] pathArray;
-    private Rocket[] rocketArray;
+    private String[] pathArray; // 40 caselle sulla board
+    private Rocket[] rocketArray; // Posizione dei 4 giocatori (inizialmente a 0)
     private int hourglassClock;
     private int hourglassRound;
     private Deck deck;
@@ -15,12 +15,9 @@ public class Gameboard {
 
 
     //Costruttore
-
-    int b;
-
-    public Gameboard (Deck deck) {
-        this.pathArray = new String[40]; // 40 caselle sulla board
-        this.rocketArray = new Rocket[4]; // Posizione dei 4 giocatori (inizialmente a 0)
+    public Gameboard (String[] pathArray, Rocket[] rocketArray,  int hourglassClock, int hourglassRound, Deck deck, int start_path, int end_path, boolean timerRunning) {
+        this.pathArray = new String[40];
+        this.rocketArray = new Rocket[4];
         this.hourglassClock = hourglassClock;
         this.hourglassRound = hourglassRound;
         this.deck = deck;

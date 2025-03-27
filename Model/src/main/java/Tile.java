@@ -5,7 +5,7 @@ public class Tile {
     public int[] connectors; //[sx, up, dx, down]
 
     public Tile(int[] connectors, int row, int column, PlayerBoard playerBoard) {
-        this.connectors = new int[4];
+        this.connectors = connectors;
         this.row = row;
         this.column = column;
         this.playerBoard = playerBoard;

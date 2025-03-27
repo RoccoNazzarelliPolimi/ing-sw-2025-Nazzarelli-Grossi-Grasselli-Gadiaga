@@ -4,7 +4,7 @@ public class Shield extends Tile {
     // Costruttore
     public Shield(int[] connectors,int row, int column, PlayerBoard playerBoard, int[] defence) {
         super(connectors, row, column, playerBoard);
-        this.defence = new int[4];
+        this.defence = defence;
     }
 
     // Metodo per ottenere i lati protetti dallo scudo
