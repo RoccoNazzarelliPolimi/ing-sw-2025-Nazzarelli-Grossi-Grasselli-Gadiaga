@@ -15,7 +15,7 @@ public class PlayerBoardTestTest extends TestCase {
         Rocket rocket = new Rocket(null, 5, 1, 0);
         Player player = new Player("Rocky", 0.0, "green", null, rocket);
         PlayerBoard playerBoard = new PlayerBoard(9, 11, player);
-        Tile tile = new Pipe(new int[4], -1, -1, playerBoard);
+        Tile tile = new Pipe(new int[4], 9, 4, playerBoard);
 
         player.setMyBoard(playerBoard);
 

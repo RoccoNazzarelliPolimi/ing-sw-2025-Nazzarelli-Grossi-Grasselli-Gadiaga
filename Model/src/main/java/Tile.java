@@ -13,6 +13,7 @@ public class Tile {
 
     public int[] getConnectors()
     {
+
         return this.connectors;
     }
 
